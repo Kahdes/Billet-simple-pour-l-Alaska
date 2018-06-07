@@ -10,7 +10,7 @@
 
 .main {
 	margin-top: 50px;
-	min-height: 700px;
+	min-height: 800px;
 }
 
 /*------------
@@ -74,16 +74,12 @@
 ------------*/
 
 footer {
-	min-height: 197px;
+	min-height: 97px;
 	background: linear-gradient(to bottom, #333, #222);
-	color: white;
+	color: lightgray;
+	padding: 10px 15px;
 }
 
-footer #footer-content {	
-	min-height: 197px;
-	padding: 0 15px;
-}
-
-footer #footer-content div {	
-	min-height: 197px;
+footer #footer-info {
+	text-align: center;
 }
