@@ -1,0 +1,89 @@
+/*-------------
+----GENERAL----
+-------------*/
+
+.container {
+	height: inherit !important;	
+	background: darkgray;
+	box-shadow: 0px 0px 10px 7.5px rgba(0, 0, 0, .25);
+}
+
+.main {
+	margin-top: 50px;
+	min-height: 700px;
+}
+
+/*------------
+----NAVBAR----
+------------*/
+
+/*-------------
+----ACCUEIL----
+-------------*/
+
+#home-banner {
+	background: black;
+}
+
+#home-banner-img {
+	height: 400px !important;
+}
+
+#home-last-infos article {
+	min-height: 400px;
+}
+
+#home-last-bill {
+	background: darkgray;
+	transition: all 0s;
+}
+
+#home-last-bill a {
+	text-decoration: none;
+	font-weight: bold;
+	color: lightblue;
+	transition: all .2s;
+}
+
+#home-last-bill a:hover {
+
+}
+
+#home-last-bill a:link {
+	
+}
+
+#home-last-bill a:active {
+	
+}
+
+#home-author {
+	background: white;
+}
+
+/*---------------
+----CONNEXION----
+---------------*/
+
+.show-pass {
+	cursor: pointer !important;
+}
+
+/*------------
+----FOOTER----
+------------*/
+
+footer {
+	min-height: 197px;
+	background: linear-gradient(to bottom, #333, #222);
+	color: white;
+}
+
+footer #footer-content {	
+	min-height: 197px;
+	padding: 0 15px;
+}
+
+footer #footer-content div {	
+	min-height: 197px;
+}

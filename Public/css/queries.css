@@ -1,0 +1,19 @@
+@media all and (min-width: 1616px) {
+	.container {
+		width: 1600px !important;
+	}
+}
+
+@media all and (max-width: 767px) {
+	.main {
+		margin-top: 0 !important;
+	}
+
+	.navbar {
+		margin: 0;
+	}
+
+	.navbar-fixed-top {
+		position: relative;
+	}
+}
