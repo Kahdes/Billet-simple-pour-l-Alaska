@@ -61,6 +61,22 @@
 	background: white;
 }
 
+/*-------------------
+----LISTE BILLETS----
+-------------------*/
+
+
+
+/*------------
+----BILLET----
+------------*/
+
+#bill-title,
+#bill-date,
+#bill-body {
+	text-align: center;
+}
+
 /*---------------
 ----CONNEXION----
 ---------------*/

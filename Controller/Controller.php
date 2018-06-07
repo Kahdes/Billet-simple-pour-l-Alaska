@@ -18,13 +18,15 @@ function billList() {
 	require_once('View/viewList.php');
 }
 
-//CONNEXION + INSCRIPTION
-function connexion() {
-
+//PAGE SPECIFIQUE DE BILLET + COMMENTAIRES
+function billInfo($id) {
+	$billController = new billController();
+	$bill = $billController->billInfo($id);
+	require_once('View/viewBill.php');
 }
 
-//PAGE SPECIFIQUE DE BILLET + COMMENTAIRES
-function billInfo() {
+//CONNEXION + INSCRIPTION
+function connexion() {
 
 }
 

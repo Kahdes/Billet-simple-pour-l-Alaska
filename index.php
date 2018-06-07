@@ -11,7 +11,7 @@ try {
 		} elseif ($_GET['action'] === 'bill' && isset($_GET['id'])) {
 			$id = (int) $_GET['id'];
 			if ($id > 0) {
-				require_once('View/viewBill.php');
+				billInfo($id);
 			} else {
 				$errMsg = "Il n'existe pas de billet n° 0.";	
 				error($errMsg, $_GET);

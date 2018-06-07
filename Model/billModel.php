@@ -31,11 +31,22 @@ class billModel extends Model {
 		return $this->sqlRequest($sql);
 	}
 
-	public function infoBill($sql, $billID) {
+	public function infoBill($id) {
+		$sql = '
+			SELECT id,
+				   titre,
+				   contenu,
+				   DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS dateFR
+			FROM billets
+			WHERE id = ?
+		';
 
+		$params = array($id);
+
+		return $this->sqlRequest($sql, $params);
 	}
 
-	public function manageBill($action) {
+	public function manageBill($action, $params) {
 		if ($action === 'add') {
 			$sql = '
 				INSERT INTO billets (titre, contenu, date_creation)
@@ -56,6 +67,13 @@ class billModel extends Model {
 		} else {
 			throw new Exception("Action de billet inconnue");			
 		}
+
+		$params = array(
+			"titre" => $params['titre'],
+			"contenu" => $params['contenu'],
+			"date_creation" => $params['date_creation'],
+			"id" => $params['id']
+		);
 
 		return $this->sqlRequest($sql, $params);
 	}

@@ -16,4 +16,8 @@ class billController {
 	public function billList() {
 		return $this->_billModel->listBills();
 	}
+
+	public function billInfo($id) {
+		return $this->_billModel->infoBill($id);
+	}
 }
