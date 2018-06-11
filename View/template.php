@@ -15,6 +15,9 @@
     <link rel="stylesheet" type="text/css" href="Public/css/bootstrap-theme.min.css" />
     <link rel="stylesheet" type="text/css" href="Public/css/style.css" />
     <link rel="stylesheet" type="text/css" href="Public/css/queries.css" />
+
+    <script type="text/javascript" src="Public/js/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
     
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
