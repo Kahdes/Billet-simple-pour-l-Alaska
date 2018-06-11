@@ -27,15 +27,27 @@ hr {
 
 #home-banner {
 	min-height: 400px;
-	background: black;
+	background: green url('../images/a.jpg') no-repeat left;
+	background-size: cover;
 }
 
-#home-title-img p {
+#home-banner-title {
+	background: linear-gradient(to bottom, #ffe6ff, 50%, rgba(0,0,0,0));
+	transition: all .5s;
+}
+
+#home-banner-title h1 {
+	border: none;
 	text-align: center;
 }
 
-#home-last-infos article {
-	min-height: 400px;
+#home-author {
+	background: white;
+	transition: all .5s;
+}
+
+#home-author:hover {
+	background: rgb(245,245,245,1);
 }
 
 #home-last-bill {
@@ -62,15 +74,9 @@ hr {
 	
 }
 
-#home-author {
-	background: white;
-}
-
 /*-------------------
 ----LISTE BILLETS----
 -------------------*/
-
-
 
 /*------------
 ----BILLET----

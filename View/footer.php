@@ -5,6 +5,9 @@
     		/
     		<button class="btn btn-link"><a href="index.php?action=connexion">Gestion</a></button>
     	</p>
-    	<p>Copyright © maximedosse.com 2018</p>       
+    	<p>Copyright © 
+    		<a href="http://www.maximedosse.com">maximedosse.com</a> 2018 - Image : 
+    		<a href="http://www.juneteenthalaskaalcan.com">www.juneteenthalaskaalcan.com</a>
+    	</p>    
     </div>
 </footer>
