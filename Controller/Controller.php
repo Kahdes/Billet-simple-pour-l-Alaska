@@ -22,6 +22,7 @@ function billList() {
 function billInfo($id) {
 	$billController = new billController();
 	$bill = $billController->billInfo($id);
+	$comments = $billController->billComm($id);
 	require_once('View/viewBill.php');
 }
 

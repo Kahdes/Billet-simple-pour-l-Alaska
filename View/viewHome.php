@@ -4,8 +4,13 @@
 <?php ob_start(); ?>
 
 	<header class="row" id="home-banner">
+		<div class="col-xs-12" id="home-banner-title">
+			<h1 class="page-header">Billet somple pour l'Alaska</h1>	
+		</div>
+
 		<div class="col-xs-12" id="home-banner-img">
-			<h1 class="page-header">Billet somple pour l'Alaska</h1>
+			<p>
+			</p>
 		</div>
 	</header>
 

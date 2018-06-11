@@ -20,4 +20,8 @@ class billController {
 	public function billInfo($id) {
 		return $this->_billModel->infoBill($id);
 	}
+
+	public function billComm($id) {
+		return $this->_billModel->commBill($id);
+	}
 }

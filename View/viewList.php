@@ -9,7 +9,7 @@
 		foreach($bill as $b) {
 			$b['contenu'] = substr($b['contenu'], 0, 1000);
 	?>
-		<article class="col-xs-12 panel">
+		<article class="col-xs-12 col-md-10 col-md-offset-1 panel">
 			<h2 class="panel-header">
 				<a href="index.php?action=bill&amp;id=<?= $b['id'];?>">
 					<?= htmlspecialchars($b['titre']);?>

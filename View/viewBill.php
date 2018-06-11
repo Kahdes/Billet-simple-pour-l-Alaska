@@ -3,8 +3,10 @@
 
 <?php ob_start(); ?>
 
+<br/>
+
 <section class="row" id="bill">
-	<article class="col-xs-12">
+	<article class="col-xs-12 panel">
 		<?php
 			foreach($bill as $b) {
 		?>
@@ -17,6 +19,8 @@
 						Publié le : <?= htmlspecialchars($b['dateFR']);?>
 					</em>
 				</p>
+
+				<hr/>
 				
 				<p class="panel-body" id="bill-body">
 					<?= htmlspecialchars($b['contenu']);?> 
@@ -26,19 +30,17 @@
 		<?php
 			}
 		?>
+
 	</article>
 </section>
 
-<!--FAIRE UN INCLUDE FORMULAIRE + TINYMCE ?-->
+<hr/>
 
-<section class="row" id="bill-new-comment">
-	
-</section>
+<!--FAIRE UN INCLUDE FORMULAIRE + TINYMCE ?-->
+<?php require_once('View/addComments.php'); ?>
 
 <!--FAIRE UN INCLUDE LISTE DE COMM. ?-->
-<section class="row" id="bill-comment-list">
-	
-</section>
+<?php require_once('View/comments.php'); ?>
 
 <?php $content = ob_get_clean(); ?>
 

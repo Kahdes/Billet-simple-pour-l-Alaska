@@ -46,6 +46,25 @@ class billModel extends Model {
 		return $this->sqlRequest($sql, $params);
 	}
 
+	//PROCHAIN
+	public function commBill($id) {
+		$sql = '
+			SELECT c.id AS id,
+				   c.contenu AS contenu,
+				   c.pseudo AS pseudo,
+				   DATE_FORMAT(c.date_creation, \'%d/%m/%Y\') AS dateFR
+			FROM commentaires AS c
+			INNER JOIN billets AS b
+			ON c.id_billet = b.id
+			WHERE b.id = ?
+			ORDER BY dateFR DESC
+		';
+
+		$params = array($id);
+
+		return $this->sqlRequest($sql, $params);
+	}
+
 	public function manageBill($action, $params) {
 		if ($action === 'add') {
 			$sql = '
