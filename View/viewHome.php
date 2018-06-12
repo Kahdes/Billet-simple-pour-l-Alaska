@@ -3,8 +3,8 @@
 
 <?php ob_start(); ?>
 
-	<header class="row" id="home-banner">
-		<div class="col-xs-12" id="home-banner-title">
+	<header class="row" id="banner">
+		<div class="col-xs-12" id="banner-title">
 			<h1 class="page-header">Billet simple pour l'Alaska</h1>	
 		</div>
 	</header>

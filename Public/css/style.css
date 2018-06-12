@@ -21,25 +21,29 @@ hr {
 ----NAVBAR----
 ------------*/
 
-/*-------------
-----ACCUEIL----
--------------*/
+/*--------------
+----BANNIERE----
+--------------*/
 
-#home-banner {
+#banner {
 	min-height: 400px;
 	background: green url('../images/a.jpg') no-repeat left;
 	background-size: cover;
 }
 
-#home-banner-title {
+#banner-title {
 	background: linear-gradient(to bottom, #ffe6ff, 50%, rgba(0,0,0,0));
 	transition: all .5s;
 }
 
-#home-banner-title h1 {
+#banner-title h1 {
 	border: none;
 	text-align: center;
 }
+
+/*-------------
+----ACCUEIL----
+-------------*/
 
 #home-author {
 	background: white;
@@ -77,6 +81,15 @@ hr {
 /*-------------------
 ----LISTE BILLETS----
 -------------------*/
+
+#billList-list {
+	min-height: 430px;
+}
+
+#billList-btn {
+	margin-bottom: 15px; 
+	text-align: center;
+}
 
 /*------------
 ----BILLET----

@@ -3,18 +3,27 @@
 
 <?php ob_start(); ?>
 
-<section class="row">
+<header class="row" id="banner">
+	<div class="col-xs-12" id="banner-title">
+		<h1 class="page-header">Billet simple pour l'Alaska</h1>	
+	</div>
+</header>
+
+<section class="row" id="billList-list">
 	<br />
 	<?php
+		$total = 0;
 		foreach($bill as $b) {
 			$b['contenu'] = substr($b['contenu'], 0, 1000);
+			$total += 1;
 	?>
-		<article class="col-xs-12 col-md-10 col-md-offset-1 panel">
+		<article class="col-xs-12 col-md-8 col-md-offset-2 panel billList-bill">
 			<h2 class="panel-header">
 				<a href="index.php?action=bill&amp;id=<?= $b['id'];?>">
 					<?= htmlspecialchars($b['titre']);?>
 				</a>
 			</h2>
+			<hr/>
 			<p class="panel-body">
 				<?= htmlspecialchars($b['contenu']);?>... 
 				<a href="index.php?action=bill&amp;id=<?= $b['id'];?>">Lire la suite</a>
@@ -28,6 +37,12 @@
 		}
 	?>
 </section>
+
+<div class="col-xs-12" id="billList-btn">
+		<button class="btn btn-large btn-info" id="prev">&laquo; Précédent</button>
+		<span><span id="current-bill">1</span> / <?= $total; ?></span>
+		<button class="btn btn-large btn-info" id="next">Suivant &raquo;</button>
+</div>
 
 <?php $content = ob_get_clean(); ?>
 
