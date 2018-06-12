@@ -17,6 +17,10 @@ class billController {
 		return $this->_billModel->listBills();
 	}
 
+	public function billMax($id) {
+		return $this->_billModel->maxBill($id);
+	}
+
 	public function billInfo($id) {
 		return $this->_billModel->infoBill($id);
 	}

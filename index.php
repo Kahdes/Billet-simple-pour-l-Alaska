@@ -10,11 +10,11 @@ try {
 			require_once('View/viewConnection.php');
 		} elseif ($_GET['action'] === 'bill' && isset($_GET['id'])) {
 			$id = (int) $_GET['id'];
-			if ($id > 0) {				
+			if ($id > 0 && billMax($id) !== 0) {
 				billInfo($id);
 			} else {
-				$errMsg = "Il n'existe pas de billet n° 0.";	
-				error($errMsg, $_GET);
+				$errMsg = "Le billet demandé n'existe pas.";	
+				error($errMsg);
 			}
 		} else {
 			$errMsg = "La page demandée n'existe pas.";

@@ -97,6 +97,18 @@ class billModel extends Model {
 		return $this->sqlRequest($sql, $params);
 	}
 
+	public function maxBill($id) {
+		$sql = '
+			SELECT id
+			FROM billets
+			WHERE id = ?
+		';
+
+		$params = array($id);
+
+		return $this->sqlRequest($sql, $params);
+	}
+
 	public function signalBIll($sql) {
 
 	}

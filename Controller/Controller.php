@@ -26,6 +26,17 @@ function billInfo($id) {
 	require_once('View/viewBill.php');
 }
 
+//FONCTION ANTI-GRIEF ID DE BILLET INCONNU
+function billMax($id) {
+	$billController = new billController();
+	$idCheck = $billController->billMax($id);
+	$a = 0;
+	while ($data = $idCheck->fetch()) {
+		$a += 1;
+	}
+	return $a;
+}
+
 //CONNEXION + INSCRIPTION
 function connexion() {
 

@@ -24,8 +24,7 @@
 				
 				<p class="panel-body" id="bill-body">
 					<?= htmlspecialchars($b['contenu']);?> 
-					<br/><br/>				
-					
+					<br/><br/>					
 				</p>
 		<?php
 			}
