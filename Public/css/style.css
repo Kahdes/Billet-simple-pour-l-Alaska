@@ -9,8 +9,8 @@
 }
 
 .main {
-	margin-top: 50px;
 	min-height: 800px;
+	margin-top: 50px;	
 }
 
 hr {
@@ -27,7 +27,7 @@ hr {
 
 #banner {
 	min-height: 400px;
-	background: green url('../images/a.jpg') no-repeat left;
+	background: url('../images/a.jpg') no-repeat center;
 	background-size: cover;
 }
 
@@ -37,8 +37,8 @@ hr {
 }
 
 #banner-title h1 {
-	border: none;
 	text-align: center;
+	border: none;	
 }
 
 /*-------------
@@ -47,22 +47,16 @@ hr {
 
 #home-author {
 	background: white;
-	transition: all .5s;
-}
-
-#home-author:hover {
-	background: rgb(245,245,245,1);
 }
 
 #home-last-bill {
 	background: darkgray;
-	transition: all 0s;
 }
 
 #home-last-bill a {
-	text-decoration: none;
-	font-weight: bold;
 	color: lightblue;
+	font-weight: bold;
+	text-decoration: none;
 	transition: all .2s;
 }
 
@@ -141,9 +135,9 @@ hr {
 
 footer {
 	min-height: 97px;
-	background: linear-gradient(to bottom, #333, #222);
-	color: lightgray;
 	padding: 10px 15px;
+	color: lightgray;
+	background: linear-gradient(to bottom, #333, #222);
 }
 
 footer #footer-info {
