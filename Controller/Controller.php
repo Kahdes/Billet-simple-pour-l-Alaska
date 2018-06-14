@@ -6,9 +6,11 @@ spl_autoload_register(function($class) {
 
 class Controller {
 	
+	private $_homeController;
 	private $_billController;
 
 	public function __construct() {
+		$this->_homeController = new homeController();
 		$this->_billController = new billController();
 	}
 
@@ -32,7 +34,7 @@ class Controller {
 					$this->error($errMsg);
 				}
 			} else {
-				$this->_billController->home();
+				$this->_homeController->home();
 			}
 		} catch (Exception $e) {
 			echo 'Erreur : ' . $e->getMessage();

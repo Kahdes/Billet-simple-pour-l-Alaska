@@ -12,12 +12,7 @@ class billController {
 		$this->_Bill = new Bill();
 		$this->_Comments = new Comments();
 	}
-
-	public function home() {
-		$bill = $this->_Bill->getLastBill();
-		require_once('View/viewHome.php');
-	}
-
+	
 	public function billList() {
 		$bill = $this->_Bill->getBillList();
 		require_once('View/viewList.php');

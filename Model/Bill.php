@@ -3,14 +3,14 @@
 require_once('Model/Model.php');
 
 class Bill extends Model {
-
+	
 	//DERNIER BILLET DU SITE
 	public function getLastBill() {
 		$sql = '
 			SELECT id,
 				   titre,
 				   contenu,
-				   DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS dateFR
+				   DATE_FORMAT(date_creation, \'%d/%m/%Y à %H:%i:%s\') AS dateFR
 			FROM billets
 			ORDER BY id DESC
 			LIMIT 0,1
@@ -24,7 +24,7 @@ class Bill extends Model {
 			SELECT id,
 				   titre,
 				   contenu,
-				   DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS dateFR
+				   DATE_FORMAT(date_creation, \'%d/%m/%Y à %H:%i:%s\') AS dateFR
 			FROM billets
 			ORDER BY id DESC
 		';
@@ -37,7 +37,7 @@ class Bill extends Model {
 			SELECT id,
 				   titre,
 				   contenu,
-				   DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS dateFR
+				   DATE_FORMAT(date_creation, \'%d/%m/%Y à %H:%i:%s\') AS dateFR
 			FROM billets
 			WHERE id = ?
 		';
@@ -76,7 +76,7 @@ class Bill extends Model {
 				    date_creation = :date_creation
 			';
 		} else {
-			throw new Exception("Action de billet inconnue");			
+			throw new Exception("Action de billet inconnue");	
 		}
 
 		$params = array(
