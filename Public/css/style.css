@@ -95,6 +95,10 @@ hr {
 ----BILLET----
 ------------*/
 
+#bill {
+	background: white;
+}
+
 #bill-title,
 #bill-date {
 	text-align: center;

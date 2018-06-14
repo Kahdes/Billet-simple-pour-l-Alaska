@@ -3,10 +3,10 @@
 
 <?php ob_start(); ?>
 
-<br/>
+<?php require_once('View/banner.php');?>
 
 <section class="row" id="bill">
-	<article class="col-xs-12 panel">
+	<article class="col-xs-12">
 		<?php
 			foreach($bill as $b) {
 		?>
@@ -32,8 +32,6 @@
 
 	</article>
 </section>
-
-<hr/>
 
 <?php require_once('View/addComments.php'); ?>
 <?php require_once('View/comments.php'); ?>
