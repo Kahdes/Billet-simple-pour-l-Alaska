@@ -1,31 +1,40 @@
 <?php
 
-require_once('Model/billModel.php');
+require_once('Model/Bill.php');
+require_once('Model/Comments.php');
 
 class billController {
-	private $_billModel;
+	
+	private $_Bill;
+	private $_Comments;
 
 	public function __construct() {
-		$this->_billModel = new billModel();
+		$this->_Bill = new Bill();
+		$this->_Comments = new Comments();
 	}
 
 	public function home() {
-		return $this->_billModel->homeBill();
+		$bill = $this->_Bill->getLastBill();
+		require_once('View/viewHome.php');
 	}
 
 	public function billList() {
-		return $this->_billModel->listBills();
+		$bill = $this->_Bill->getBillList();
+		require_once('View/viewList.php');
+	}	
+
+	public function billInfo($id) {
+		$bill = $this->_Bill->getBillInfo($id);
+		$comments = $this->_Comments->getComments($id);
+		require_once('View/viewBill.php');
 	}
 
 	public function billMax($id) {
-		return $this->_billModel->maxBill($id);
-	}
-
-	public function billInfo($id) {
-		return $this->_billModel->infoBill($id);
-	}
-
-	public function billComm($id) {
-		return $this->_billModel->commBill($id);
+		$idCheck = $this->_Bill->getBillMax($id);
+		$a = 0;
+		while ($data = $idCheck->fetch()) {
+			$a += 1;
+		}
+		return $a;
 	}
 }

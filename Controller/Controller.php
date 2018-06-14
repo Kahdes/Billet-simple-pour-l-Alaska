@@ -4,50 +4,42 @@ spl_autoload_register(function($class) {
 	require_once($class . '.php');
 });
 
-//ACCUEIL + DERNIER BILLET + RECHERCHE ?
-function home() {
-	$billController = new billController();
-	$bill = $billController->home();
-	require_once('View/viewHome.php');
-}
+class Controller {
+	
+	private $_billController;
 
-//PAGE LISTE DE TOUS LES BILLETS
-function billList() {
-	$billController = new billController();
-	$bill = $billController->billList();
-	require_once('View/viewList.php');
-}
-
-//PAGE SPECIFIQUE DE BILLET + COMMENTAIRES
-function billInfo($id) {
-	$billController = new billController();
-	$bill = $billController->billInfo($id);
-	$comments = $billController->billComm($id);
-	require_once('View/viewBill.php');
-}
-
-//FONCTION ANTI-GRIEF ID DE BILLET INCONNU
-function billMax($id) {
-	$billController = new billController();
-	$idCheck = $billController->billMax($id);
-	$a = 0;
-	while ($data = $idCheck->fetch()) {
-		$a += 1;
+	public function __construct() {
+		$this->_billController = new billController();
 	}
-	return $a;
-}
 
-//CONNEXION + INSCRIPTION
-function connexion() {
+	public function request() {
+		try {
+			if (isset($_GET['action'])) {
+				if ($_GET['action'] === 'billList') {
+					$this->_billController->billList();
+				} elseif ($_GET['action'] === 'connexion') {
+					require_once('View/viewConnection.php');
+				} elseif ($_GET['action'] === 'bill' && isset($_GET['id'])) {
+					$id = (int) $_GET['id'];
+					if ($id > 0 && $this->_billController->billMax($id) !== 0) {
+						$this->_billController->billInfo($id);
+					} else {
+						$errMsg = "Le billet demandé n'existe pas.";
+						$this->error($errMsg);
+					}
+				} else {
+					$errMsg = "La page demandée n'existe pas.";
+					$this->error($errMsg);
+				}
+			} else {
+				$this->_billController->home();
+			}
+		} catch (Exception $e) {
+			echo 'Erreur : ' . $e->getMessage();
+		}
+	}
 
-}
-
-//CREATION + MODIFICATION + SUPPRESSION DE BILLETS
-function manageBills() {
-
-}
-
-//ERREUR
-function error($msg) {
-	require_once('View/viewError.php');
+	public function error($msg) {
+		require_once('View/viewError.php');
+	}
 }

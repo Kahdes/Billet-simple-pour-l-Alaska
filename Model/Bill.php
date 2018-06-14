@@ -2,9 +2,10 @@
 
 require_once('Model/Model.php');
 
-class billModel extends Model {
+class Bill extends Model {
 
-	public function homeBill() {
+	//DERNIER BILLET DU SITE
+	public function getLastBill() {
 		$sql = '
 			SELECT id,
 				   titre,
@@ -14,11 +15,11 @@ class billModel extends Model {
 			ORDER BY id DESC
 			LIMIT 0,1
 		';
-
 		return $this->sqlRequest($sql);
 	}
 
-	public function listBills() {
+	//LISTE DE TOUS LES BILLETS
+	public function getBillList() {
 		$sql = '
 			SELECT id,
 				   titre,
@@ -27,11 +28,11 @@ class billModel extends Model {
 			FROM billets
 			ORDER BY id DESC
 		';
-
 		return $this->sqlRequest($sql);
 	}
 
-	public function infoBill($id) {
+	//INFORMATIONS DE BILLET
+	public function getBillInfo($id) {
 		$sql = '
 			SELECT id,
 				   titre,
@@ -40,31 +41,22 @@ class billModel extends Model {
 			FROM billets
 			WHERE id = ?
 		';
-
 		$params = array($id);
-
 		return $this->sqlRequest($sql, $params);
 	}
 
-	//PROCHAIN
-	public function commBill($id) {
+	//CHECK BILLET EXISTANT
+	public function getBillMax($id) {
 		$sql = '
-			SELECT c.id AS id,
-				   c.contenu AS contenu,
-				   c.pseudo AS pseudo,
-				   DATE_FORMAT(c.date_creation, \'%d/%m/%Y\') AS dateFR
-			FROM commentaires AS c
-			INNER JOIN billets AS b
-			ON c.id_billet = b.id
-			WHERE b.id = ?
-			ORDER BY dateFR DESC
+			SELECT id
+			FROM billets
+			WHERE id = ?
 		';
-
 		$params = array($id);
-
 		return $this->sqlRequest($sql, $params);
-	}
+	}	
 
+	//POUR ADMIN
 	public function manageBill($action, $params) {
 		if ($action === 'add') {
 			$sql = '
@@ -93,18 +85,6 @@ class billModel extends Model {
 			"date_creation" => $params['date_creation'],
 			"id" => $params['id']
 		);
-
-		return $this->sqlRequest($sql, $params);
-	}
-
-	public function maxBill($id) {
-		$sql = '
-			SELECT id
-			FROM billets
-			WHERE id = ?
-		';
-
-		$params = array($id);
 
 		return $this->sqlRequest($sql, $params);
 	}
