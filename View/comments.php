@@ -8,8 +8,9 @@
 		?>
 			<article class="panel">
 				<h3 class="panel-heading" id="comment-title">
-					<?= htmlspecialchars($c['pseudo']);?>					
-				</h1>
+					<?= htmlspecialchars($c['pseudo']);?>
+					<span class="pull-right glyphicon glyphicon-flag show-pass flag" title="Signaler ce commentaire"></span>
+				</h3>
 
 				<p id="comment-date">
 					<em>

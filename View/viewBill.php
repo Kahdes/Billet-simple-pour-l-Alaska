@@ -35,10 +35,7 @@
 
 <hr/>
 
-<!--FAIRE UN INCLUDE FORMULAIRE + TINYMCE ?-->
 <?php require_once('View/addComments.php'); ?>
-
-<!--FAIRE UN INCLUDE LISTE DE COMM. ?-->
 <?php require_once('View/comments.php'); ?>
 
 <?php $content = ob_get_clean(); ?>

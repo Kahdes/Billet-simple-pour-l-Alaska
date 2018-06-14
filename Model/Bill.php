@@ -56,6 +56,10 @@ class Bill extends Model {
 		return $this->sqlRequest($sql, $params);
 	}	
 
+	public function signalBIll() {
+
+	}
+
 	//POUR ADMIN
 	public function manageBill($action, $params) {
 		if ($action === 'add') {
@@ -87,9 +91,5 @@ class Bill extends Model {
 		);
 
 		return $this->sqlRequest($sql, $params);
-	}
-
-	public function signalBIll($sql) {
-
-	}
+	}	
 }
