@@ -3,6 +3,8 @@
 
 <?php ob_start(); ?>
 
+<?php require_once('View/banner.php');?>
+
 <br/>
 
 <section class="row">

@@ -1,4 +1,3 @@
-//Variables globales
 var Navbar = {
 	url: location.href,
 	homeElt: document.getElementById('accueil'),
