@@ -23,7 +23,8 @@ class Controller {
 					require_once('View/viewConnection.php');
 				} elseif ($_GET['action'] === 'bill' && isset($_GET['id'])) {
 					$id = (int) $_GET['id'];
-					if ($id > 0 && $this->_billController->billMax($id) !== 0) {
+					$maxID = $this->_billController->billMax($id);
+					if ($id > 0 && $maxID !== 0) {
 						if (isset($_POST['pseudo']) && isset($_POST['comment'])) {
 							$pseudo = $_POST['pseudo'];
 							$content = $_POST['comment'];

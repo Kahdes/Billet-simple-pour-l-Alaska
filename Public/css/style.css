@@ -98,6 +98,10 @@ hr {
 	text-align: center;
 }
 
+#bill-navigate {
+	margin-bottom: 15px;
+}
+
 #bill-title,
 #comment-title {
 	margin: 10px 0;

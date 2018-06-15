@@ -29,6 +29,7 @@ class billController {
 
 	public function billInfo($id) {
 		$bill = $this->_Bill->getBillInfo($id);
+		$maxID = $this->billMax($id + 1);
 		$comments = $this->_Comments->getComments($id);
 		require_once('View/viewBill.php');
 	}
