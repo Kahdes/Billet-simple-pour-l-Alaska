@@ -33,15 +33,13 @@ class billController {
 		require_once('View/viewBill.php');
 	}
 
-	public function addComment($id, $content, $author) {
-		$date = new Date("%d/%m/%Y à %H:%i:%s");
+	public function addComment($id, $content, $pseudo) {
 		$params = array(
 			"id" => $id,
-			"auteur" => $author,
-			"contenu" => $content,
-			"date_creation" => $date			
+			"pseudo" => $pseudo,
+			"contenu" => $content		
 		);		
 		$this->_Comments->addComment($params);
-		header("Location: index.php?action=bill?id=$id");
+		header("Location: index.php?action=bill&id=$id");
 	}
 }

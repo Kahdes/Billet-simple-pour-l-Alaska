@@ -10,7 +10,7 @@ class Comments extends Model {
 			SELECT id,
 				   contenu,
 				   pseudo,
-				   DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS dateFR
+				   DATE_FORMAT(date_creation, \'%d/%m/%Y à %H:%i:%s\') AS dateFR
 			FROM commentaires
 			WHERE id_billet = ?
 			ORDER BY dateFR DESC
@@ -22,14 +22,13 @@ class Comments extends Model {
 	public function addComment($params) {
 		$sql = '
 			INSERT INTO commentaires (id_billet, contenu, pseudo, date_creation)
-			VALUES (:id, :contenu, :pseudo, :dateFR)
+			VALUES (:id, :contenu, :pseudo, NOW())
 		';
 
 		$params = array(
 			"id" => $params['id'],
-			"auteur" => $params['auteur'],
 			"contenu" => $params['contenu'],
-			"date_creation" => $params['date_creation']
+			"pseudo" => $params['pseudo']
 		);
 
 		return $this->sqlRequest($sql, $params);

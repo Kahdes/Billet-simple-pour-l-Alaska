@@ -24,7 +24,13 @@ class Controller {
 				} elseif ($_GET['action'] === 'bill' && isset($_GET['id'])) {
 					$id = (int) $_GET['id'];
 					if ($id > 0 && $this->_billController->billMax($id) !== 0) {
-						$this->_billController->billInfo($id);
+						if (isset($_POST['pseudo']) && isset($_POST['comment'])) {
+							$pseudo = $_POST['pseudo'];
+							$content = $_POST['comment'];
+							$this->_billController->addComment($id, $content, $pseudo);
+						} else {
+							$this->_billController->billInfo($id);
+						}
 					} else {
 						$errMsg = "Le billet demandé n'existe pas.";
 						$this->error($errMsg);
