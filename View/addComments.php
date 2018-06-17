@@ -16,6 +16,11 @@
 				<textarea class="form-control" name="comment" id="comment" required></textarea>
 			</div>
 
+			<div class="form-group">
+				<label for="comment-confirm">Je confirme l'envoi de ce commentaire : </label>
+				<input type="checkbox" name="comment-confirm" id="comment-confirm" required />
+			</div>	
+
 			<input class="btn btn-info form-control" type="submit" />
 		</form>
 	</div>

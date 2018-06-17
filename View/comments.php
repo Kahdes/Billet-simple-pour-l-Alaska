@@ -9,7 +9,9 @@
 			<article class="panel">
 				<h3 class="panel-heading" id="comment-title">
 					<?= htmlspecialchars($c['pseudo']);?>
-					<span class="pull-right glyphicon glyphicon-flag show-pass flag" title="Signaler ce commentaire"></span>
+					<a href="index.php?action=flag&id=<?= htmlspecialchars($c['id']);?>">
+						<span class="pull-right glyphicon glyphicon-flag show-pass flag" title="Signaler ce commentaire" id="flag-<?= htmlspecialchars($c['id']);?>"></span>
+					</a>
 				</h3>
 
 				<p id="comment-date">

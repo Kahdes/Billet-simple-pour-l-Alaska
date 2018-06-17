@@ -29,14 +29,14 @@
 			<?php
 				if ($id - 1 > 0) {
 			?>
-					<a href="index.php?action=bill&id=<?= ($id-1); ?>">
+					<a href="index.php?action=bill&amp;id=<?= ($id-1); ?>">
 						<button class="btn btn-info pull-left"><span class="glyphicon glyphicon-arrow-left"></span> Billet précédent</button>
 					</a>
 			<?php
 				} 
 				if ($maxID !== 0) {
 			?>
-					<a href="index.php?action=bill&id=<?= ($id+1); ?>">
+					<a href="index.php?action=bill&amp;id=<?= ($id+1); ?>">
 						<button class="btn btn-info pull-right">Billet suivant <span class="glyphicon glyphicon-arrow-right"></span></button>
 					</a>
 			<?php
@@ -45,7 +45,6 @@
 		<?php
 			}
 		?>
-
 	</article>
 </section>
 

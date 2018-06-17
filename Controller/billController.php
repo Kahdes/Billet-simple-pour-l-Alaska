@@ -12,11 +12,6 @@ class billController {
 		$this->_Bill = new Bill();
 		$this->_Comments = new Comments();
 	}
-	
-	public function billList() {
-		$bill = $this->_Bill->getBillList();
-		require_once('View/viewList.php');
-	}	
 
 	public function billMax($id) {
 		$idCheck = $this->_Bill->getBillMax($id);
@@ -27,20 +22,20 @@ class billController {
 		return $a;
 	}
 
+	public function billHome() {
+		$bill = $this->_Bill->getLastBill();
+		require_once('View/viewHome.php');
+	}
+	
+	public function billList() {
+		$bill = $this->_Bill->getBillList();
+		require_once('View/viewList.php');
+	}	
+
 	public function billInfo($id) {
 		$bill = $this->_Bill->getBillInfo($id);
 		$maxID = $this->billMax($id + 1);
 		$comments = $this->_Comments->getComments($id);
 		require_once('View/viewBill.php');
-	}
-
-	public function addComment($id, $content, $pseudo) {
-		$params = array(
-			"id" => $id,
-			"pseudo" => $pseudo,
-			"contenu" => $content		
-		);		
-		$this->_Comments->addComment($params);
-		header("Location: index.php?action=bill&id=$id");
 	}
 }
