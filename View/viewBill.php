@@ -1,4 +1,4 @@
-<?php $title = "Billet simple pour l'Alaske : Liste des billets"; ?>
+<?php $title = "Billet simple pour l'Alaske : billet"; ?>
 <?php $description = "Découvrez l'histoire du dernier livre de Jean Forteroche : 'Billet simple pour l'Alaska' au travers de ce billet"; ?>
 
 <?php ob_start(); ?>

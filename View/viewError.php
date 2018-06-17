@@ -1,11 +1,9 @@
-<?php $title = "Billet simple pour l'Alaske : Liste des billets"; ?>
-<?php $description = "Découvrez tous les billets du dernier livre de Jean Forteroche : 'Billet simple pour l'Alaska'"; ?>
+<?php $title = $msg; ?>
+<?php $description = ""; ?>
 
 <?php ob_start(); ?>
 
 <?php require_once('View/banner.php');?>
-
-<br/>
 
 <section class="row">
 	<article class="alert alert-danger">

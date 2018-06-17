@@ -1,5 +1,5 @@
-<?php $title = 'Signaler un commentaire'; ?>
-<?php $description = ''; ?>
+<?php $title = "Signaler un commentaire"; ?>
+<?php $description = ""; ?>
 
 <?php ob_start(); ?>
 
@@ -9,9 +9,9 @@
 		if (isset($_POST['confirm'])) {
 	?>
 			<section class="row">
-				<article class="success alert-success">
+				<article class="alert alert-success">
 					<h1 class="panel-heading">Votre signalement a été pris en compte !</h1>
-					<p class="panel-body"><a href="index.php?action=billList">Retour à la liste des billets</a></p>
+					<p class="panel-body"><a href="index.php?action=billList">Retour à la liste des billets -></a></p>
 				</article>
 			</section>
 	<?php

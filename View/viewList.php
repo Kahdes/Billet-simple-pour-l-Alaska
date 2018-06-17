@@ -1,4 +1,4 @@
-<?php $title = "Billet simple pour l'Alaske : Liste des billets"; ?>
+<?php $title = "Billet simple pour l'Alaska : Liste des billets"; ?>
 <?php $description = "Découvrez tous les billets du dernier livre de Jean Forteroche : 'Billet simple pour l'Alaska'"; ?>
 
 <?php ob_start(); ?>
@@ -35,9 +35,9 @@
 </section>
 
 <div class="col-xs-12" id="billList-btn">
-		<button class="btn btn-large btn-info" id="prev">&laquo; Précédent</button>
-		<span><span id="current-bill">1</span> / <?= $total; ?></span>
-		<button class="btn btn-large btn-info" id="next">Suivant &raquo;</button>
+	<button class="btn btn-large btn-info" id="prev">&laquo; Précédent</button>
+	<span><span id="current-bill">1</span> / <?= $total; ?></span>
+	<button class="btn btn-large btn-info" id="next">Suivant &raquo;</button>
 </div>
 
 <?php $content = ob_get_clean(); ?>

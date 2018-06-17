@@ -1,5 +1,5 @@
-<?php $title = 'Connexion'; ?>
-<?php $description = ''; ?>
+<?php $title = "Billet simple pour l'Alaska : Connexion"; ?>
+<?php $description = ""; ?>
 
 <?php ob_start(); ?>
 

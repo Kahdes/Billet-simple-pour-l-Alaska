@@ -1,5 +1,5 @@
-<?php $title = 'Accueil'; ?>
-<?php $description = ''; ?>
+<?php $title = "Billet simple pour l'Alaska : Accueil"; ?>
+<?php $description = "Découvrez le dernier livre de Jean Forteroche : 'Billet somple pour l'Alaska'"; ?>
 
 <?php ob_start(); ?>
 
