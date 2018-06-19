@@ -7,7 +7,7 @@
     	</p>
     	<p>Copyright © 
     		<a href="http://www.maximedosse.com">maximedosse.com</a> 2018 - Image : 
-    		<a href="http://www.juneteenthalaskaalcan.com">www.juneteenthalaskaalcan.com</a>
+    		<a href="http://www.juneteenthalaskaalcan.com">juneteenthalaskaalcan.com</a>
     	</p>    
     </div>
 </footer>

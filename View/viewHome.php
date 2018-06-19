@@ -24,16 +24,16 @@
 			<h2 class="panel-heading">Dernier billet paru :</h2>
 			<?php
 				foreach($bill as $b) {
-					$b['contenu'] = substr($b['contenu'], 0, 1000);
+					$b['contenu'] = substr($b['contenu'], 0, 850);
 			?>
 					<h3 class="panel-heading">
-						<a href="index.php?action=bill&amp;id=<?= $b['id'];?>">
+						<a class="custom-a" href="index.php?action=bill&amp;id=<?= $b['id'];?>">
 							<?= htmlspecialchars($b['titre']);?>
 						</a>
 					</h3>
 					<p class="panel-body">
 						<?= htmlspecialchars($b['contenu']);?>... 
-						<a href="index.php?action=bill&amp;id=<?= $b['id'];?>">Lire la suite</a>
+						<a class="custom-a" href="index.php?action=bill&amp;id=<?= $b['id'];?>">Lire la suite</a>
 						<br/><br/>				
 						<em class="pull-right">
 							Publié le : <?= htmlspecialchars($b['dateFR']);?>

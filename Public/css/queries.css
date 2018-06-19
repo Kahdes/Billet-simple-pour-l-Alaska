@@ -17,3 +17,9 @@
 		position: relative;
 	}
 }
+
+@media all and (max-width: 340px) {
+	.full-width {
+		width: 100% !important;
+	}
+}

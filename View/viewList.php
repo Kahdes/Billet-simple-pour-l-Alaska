@@ -10,19 +10,19 @@
 	<?php
 		$total = 0;
 		foreach($bill as $b) {
-			$b['contenu'] = substr($b['contenu'], 0, 1000);
+			$b['contenu'] = substr($b['contenu'], 0, 850);
 			$total += 1;
 	?>
 		<article class="col-xs-12 col-md-8 col-md-offset-2 panel billList-bill">
 			<h2 class="panel-header">
-				<a href="index.php?action=bill&amp;id=<?= $b['id'];?>">
+				<a class="custom-a" href="index.php?action=bill&amp;id=<?= $b['id'];?>">
 					<?= htmlspecialchars($b['titre']);?>
 				</a>
 			</h2>
 			<hr/>
 			<p class="panel-body">
 				<?= htmlspecialchars($b['contenu']);?>... 
-				<a href="index.php?action=bill&amp;id=<?= $b['id'];?>">Lire la suite</a>
+				<a class="custom-a" href="index.php?action=bill&amp;id=<?= $b['id'];?>">Lire la suite</a>
 				<br/><br/>
 				<em class="pull-right">
 				Publié le : <?= htmlspecialchars($b['dateFR']);?>

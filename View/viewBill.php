@@ -30,14 +30,14 @@
 				if ($id - 1 > 0) {
 			?>
 					<a href="index.php?action=bill&amp;id=<?= ($id-1); ?>">
-						<button class="btn btn-info pull-left"><span class="glyphicon glyphicon-arrow-left"></span> Billet précédent</button>
+						<button class="btn btn-info pull-left full-width"><span class="glyphicon glyphicon-arrow-left"></span> Billet précédent</button>
 					</a>
 			<?php
 				} 
 				if ($max !== 0) {
 			?>
 					<a href="index.php?action=bill&amp;id=<?= ($id+1); ?>">
-						<button class="btn btn-info pull-right">Billet suivant <span class="glyphicon glyphicon-arrow-right"></span></button>
+						<button class="btn btn-info pull-right full-width">Billet suivant <span class="glyphicon glyphicon-arrow-right"></span></button>
 					</a>
 			<?php
 				}

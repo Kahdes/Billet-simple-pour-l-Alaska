@@ -2,6 +2,10 @@
 ----GENERAL----
 -------------*/
 
+body {
+	min-width: 320px;
+}
+
 .container {
 	height: inherit !important;	
 	background: darkgray;
@@ -13,13 +17,35 @@
 	margin-top: 50px;	
 }
 
+.custom-a:link {
+	color: #e8d9c9;
+	font-weight: ;
+	text-decoration: none;
+	transition: all .2s;
+}
+
+.custom-a:visited {
+	color: #d9bfa6;
+	text-decoration: none;
+}
+
+.custom-a:hover {
+	color: #d9bfa6;
+	text-decoration: none;
+}
+
+.custom-a:active {
+	color: #d9bfa6;
+	text-decoration: none;
+}
+
+.panel-body {
+	text-align: justify !important;
+}
+
 hr {
 	margin: 10px 0;
 }
-
-/*------------
-----NAVBAR----
-------------*/
 
 /*--------------
 ----BANNIERE----
@@ -51,25 +77,6 @@ hr {
 
 #home-last-bill {
 	background: darkgray;
-}
-
-#home-last-bill a {
-	color: lightblue;
-	font-weight: bold;
-	text-decoration: none;
-	transition: all .2s;
-}
-
-#home-last-bill a:hover {
-
-}
-
-#home-last-bill a:link {
-	
-}
-
-#home-last-bill a:active {
-	
 }
 
 /*-------------------
