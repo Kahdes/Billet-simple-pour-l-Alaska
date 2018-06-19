@@ -8,12 +8,12 @@
 				
 			<div class="form-group">
 				<label for="pseudo">Pseudo : </label><br/>			
-				<input class="form-control" type="text" name="pseudo" id="pseudo" required />
+				<input class="form-control" type="text" name="pseudo" id="pseudo" placeholder="Anonyme" required />
 			</div>
 
 			<div class="form-group">
 				<label for="comment">Commentaire : </label><br/>
-				<textarea class="form-control" name="comment" id="comment" required></textarea>
+				<textarea class="form-control" name="comment" id="comment" placeholder="Laissez votre message ici..." required></textarea>
 			</div>
 
 			<div class="form-group">
@@ -25,5 +25,3 @@
 		</form>
 	</div>
 </section>
-
-<script type="text/javascript" src=""></script>

@@ -34,7 +34,7 @@
 					</a>
 			<?php
 				} 
-				if ($maxID !== 0) {
+				if ($max !== 0) {
 			?>
 					<a href="index.php?action=bill&amp;id=<?= ($id+1); ?>">
 						<button class="btn btn-info pull-right">Billet suivant <span class="glyphicon glyphicon-arrow-right"></span></button>
@@ -42,6 +42,7 @@
 			<?php
 				}
 			?>
+				</p>
 		<?php
 			}
 		?>

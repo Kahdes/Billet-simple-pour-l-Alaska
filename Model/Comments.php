@@ -15,8 +15,22 @@ class Comments extends Model {
 		return $this->sqlRequest($sql, $params);
 	}
 
-	//LISTE DE COMMENTAIRES D'UN BILLET
-	public function getComments($id) {
+	//TOTAL DE COMMENTAIRES D'UN BILLET
+	public function getTotalComments($id) {
+		$sql = '
+			SELECT COUNT(*) AS total
+			FROM commentaires
+			WHERE id_billet = :id
+		';
+		$params = array(
+			"id" => $id
+		);
+		return $this->sqlRequest($sql, $params);
+	}
+
+	//LISTE DES COMMENTAIRES D'UN BILLET
+	public function getComments($id, $page) {
+		$start = $page * 5;
 		$sql = '
 			SELECT id,
 				   contenu,
@@ -25,12 +39,13 @@ class Comments extends Model {
 			FROM commentaires
 			WHERE id_billet = ?
 			ORDER BY dateFR DESC
+			LIMIT ' . $start . ',5
 		';
 		$params = array($id);
 		return $this->sqlRequest($sql, $params);
 	}
 
-	//LISTE DE COMMENTAIRES D'UN BILLET
+	//COMMENTAIRE SPECIFIQUE
 	public function getComment($id) {
 		$sql = '
 			SELECT id,
@@ -44,6 +59,7 @@ class Comments extends Model {
 		return $this->sqlRequest($sql, $params);
 	}
 
+	//AJOUT DE COMMENTAIRE
 	public function addComment($params) {
 		$sql = '
 			INSERT INTO commentaires (id_billet, contenu, pseudo, date_creation)
@@ -59,6 +75,7 @@ class Comments extends Model {
 		return $this->sqlRequest($sql, $params);
 	}
 
+	//TOTAL DE FLAGS D'UN COMMENTAIRE
 	public function getFlags($id) {
 		$sql = '
 			SELECT flagged
@@ -69,6 +86,7 @@ class Comments extends Model {
 		return $this->sqlRequest($sql, $params);
 	}
 
+	//AJOUT DE FLAG COMMENTAIRE
 	public function flagComment($id, $count) {
 		$sql = '
 			UPDATE commentaires
@@ -81,4 +99,5 @@ class Comments extends Model {
 		);
 		return $this->sqlRequest($sql, $params);
 	}
+
 }

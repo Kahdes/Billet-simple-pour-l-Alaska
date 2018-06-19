@@ -16,11 +16,11 @@ class Controller {
 
 	public function request() {
 		try {
+			//ACTION INITIALE
 			if (isset($_GET['action'])) {
 				if ($_GET['action'] === 'billList') {
 					$this->_billController->billList();
-				} elseif ($_GET['action'] === 'connexion') {
-					require_once('View/viewConnection.php');
+				//PAGE DE BILLET SPECIFIQUE
 				} elseif ($_GET['action'] === 'bill' && isset($_GET['id'])) {
 					$id = (int) $_GET['id'];
 					$maxID = $this->_billController->billMax($id);
@@ -29,13 +29,22 @@ class Controller {
 							$pseudo = $_POST['pseudo'];
 							$content = $_POST['comment'];
 							$this->_commentsController->commentAdd($id, $content, $pseudo);
-						} else {
-							$this->_billController->billInfo($id);
 						}
+						if (isset($_GET['page'])) {
+							$page = ((int) $_GET['page']) - 1;
+							if ($page < 0) {
+								$errMsg = "La page de commentaire demandée n'existe pas.";
+								$this->error($errMsg);
+							}
+						} else {
+							$page = 0;
+						}
+						$this->_billController->billInfo($id, $page);
 					} else {
 						$errMsg = "Le billet demandé n'existe pas.";
 						$this->error($errMsg);
 					}
+				//PAGE DE SIGNALEMENT
 				} elseif ($_GET['action'] === 'flag' && isset($_GET['id'])) {
 					$id = (int) $_GET['id'];
 					$maxID = $this->_commentsController->commentMax($id);
@@ -48,10 +57,14 @@ class Controller {
 						$errMsg = "Le commentaire demandé n'existe pas.";
 						$this->error($errMsg);
 					}
+				//PAGE DE CONNEXION
+				} elseif ($_GET['action'] === 'connexion') {
+					require_once('View/viewConnection.php');
 				} else {
 					$errMsg = "La page demandée n'existe pas.";
 					$this->error($errMsg);
 				}
+			//PAGE D'ACCUEIL PAR DEFAUT
 			} else {
 				$this->_billController->billHome();
 			}
@@ -60,10 +73,8 @@ class Controller {
 		}
 	}
 
-	public function checkPOST($params) {
-	}
-
 	public function error($msg) {
 		require_once('View/viewError.php');
 	}
+	
 }

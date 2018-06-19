@@ -10,6 +10,7 @@ class commentsController {
 		$this->_Comments = new Comments();
 	}
 
+	//CHECK COMMENTAIRE EXISTANT
 	public function commentMax($id) {
 		$idCheck = $this->_Comments->getCommentMax($id);
 		$a = 0;
@@ -19,21 +20,7 @@ class commentsController {
 		return $a;
 	}
 
-	public function commentAdd($id, $content, $pseudo) {
-		$params = array(
-			"id" => $id,
-			"pseudo" => $pseudo,
-			"contenu" => $content		
-		);		
-		$this->_Comments->addComment($params);
-		header("Location: index.php?action=bill&id=$id");
-	}
-
-	public function commentInfo($id) {
-		$comment = $this->_Comments->getComment($id);
-		require_once('View/viewFlagged.php');
-	}
-	
+	//AJOUT DE FLAG COMMENTAIRE
 	public function commentFlag($id) {
 		$result = $this->_Comments->getFlags($id);
 		while ($data = $result->fetch()) {
@@ -42,4 +29,21 @@ class commentsController {
 		}
 		$this->_Comments->flagComment($id, $flag);
 	}
+
+	//PAGE : COMMENTAIRE SPECIFIQUE
+	public function commentInfo($id) {
+		$comment = $this->_Comments->getComment($id);
+		require_once('View/viewFlagged.php');
+	}	
+
+	//REDIRECTION : AJOUT DE COMMENTAIRE
+	public function commentAdd($id, $content, $pseudo) {
+		$params = array(
+			"id" => htmlspecialchars($id),
+			"pseudo" => htmlspecialchars($pseudo),
+			"contenu" => htmlspecialchars($content)		
+		);		
+		$this->_Comments->addComment($params);
+	}
+
 }

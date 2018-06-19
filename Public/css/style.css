@@ -117,6 +117,10 @@ hr {
 	padding: 0 30px;
 }
 
+#comment-pagination {
+	text-align: center;
+}
+
 .flag {
 	transition: all .2s;
 }

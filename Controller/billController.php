@@ -13,6 +13,7 @@ class billController {
 		$this->_Comments = new Comments();
 	}
 
+	//CHECK BILLET EXISTANT + BOUTON BILLET SUIVANT
 	public function billMax($id) {
 		$idCheck = $this->_Bill->getBillMax($id);
 		$a = 0;
@@ -22,20 +23,30 @@ class billController {
 		return $a;
 	}
 
+	//PAGE : ACCUEIL + DERNIER BILLET
 	public function billHome() {
 		$bill = $this->_Bill->getLastBill();
 		require_once('View/viewHome.php');
 	}
 	
+	//PAGE : LISTE DES BILLETS
 	public function billList() {
 		$bill = $this->_Bill->getBillList();
 		require_once('View/viewList.php');
 	}	
 
-	public function billInfo($id) {
+	//PAGE : BILLET + COMMENTAIRES
+	public function billInfo($id, $page) {
+		$max = $this->billMax($id + 1);
 		$bill = $this->_Bill->getBillInfo($id);
-		$maxID = $this->billMax($id + 1);
-		$comments = $this->_Comments->getComments($id);
+		$pages = $this->_Comments->getTotalComments($id);
+		$liPages = 0;
+		while ($data = $pages->fetch()) {
+			$total = (int) $data['total'];
+			$liPages = ceil($total / 5);
+		}
+		$comments = $this->_Comments->getComments($id, $page);
 		require_once('View/viewBill.php');
 	}
+
 }
