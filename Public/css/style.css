@@ -6,17 +6,29 @@ body {
 	min-width: 320px;
 }
 
+hr {
+	margin: 10px 0;
+}
+
 .container {
 	height: inherit !important;	
+	min-height: 800px;
+	margin-top: 50px;	
 	background: darkgray;
 	box-shadow: 0px 0px 10px 7.5px rgba(0, 0, 0, .25);
 }
 
-.main {
-	min-height: 800px;
-	margin-top: 50px;	
+/*BOOTSTRAP*/
+.panel-body {
+	text-align: justify !important;
 }
 
+.pagination li a:first-child,
+.pagination li a:last-child {
+	border-radius: 0;
+}
+
+/*LIENS DES BILLETS*/
 .custom-a:link {
 	color: #e8d9c9;
 	font-weight: ;
@@ -37,14 +49,6 @@ body {
 .custom-a:active {
 	color: #d9bfa6;
 	text-decoration: none;
-}
-
-.panel-body {
-	text-align: justify !important;
-}
-
-hr {
-	margin: 10px 0;
 }
 
 /*--------------
@@ -84,7 +88,7 @@ hr {
 -------------------*/
 
 #billList-list {
-	min-height: 430px;
+	min-height: 400px;
 }
 
 #billList-btn {
@@ -92,9 +96,9 @@ hr {
 	text-align: center;
 }
 
-/*------------
-----BILLET----
-------------*/
+/*---------------------------
+----BILLET & COMMENTAIRES----
+---------------------------*/
 
 #bill {
 	background: white;
@@ -105,13 +109,20 @@ hr {
 	text-align: center;
 }
 
-#bill-navigate {
-	margin-bottom: 15px;
-}
-
 #bill-title,
 #comment-title {
 	margin: 10px 0;
+}
+
+#bill-pagination,
+#comment-pagination {
+	text-align: center;
+}
+
+#bill-active,
+#comment-active {
+	color: white;
+	background: linear-gradient(to bottom, #5bc0de, #428bca) !important;
 }
 
 #comment {
@@ -124,11 +135,8 @@ hr {
 	padding: 0 30px;
 }
 
-#comment-pagination {
-	text-align: center;
-}
-
 .flag {
+	color: #428bca;
 	transition: all .2s;
 }
 

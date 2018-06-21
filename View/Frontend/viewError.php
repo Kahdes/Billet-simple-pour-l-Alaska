@@ -3,7 +3,7 @@
 
 <?php ob_start(); ?>
 
-<?php require_once('View/banner.php');?>
+<?php require_once('View/Frontend/banner.php');?>
 
 <section class="row">
 	<article class="alert alert-danger">

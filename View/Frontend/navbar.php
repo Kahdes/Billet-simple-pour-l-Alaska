@@ -9,7 +9,27 @@
             </li>
             <li class="navbar-link" id="billList">
             	<a href="index.php?action=billList"><span class="glyphicon glyphicon-book"></span> Liste des billets</a>
-            </li>      
+            </li>
+<?php
+    if (isset($_SESSION['account']) && isset($_SESSION['password'])) {
+?>
+        <li class="navbar-link" id="gestion">
+            <a href="index.php?action=billList"><span class="glyphicon glyphicon-book"></span> Gestion</a>
+        </li>
+<?php
+    }
+?>
         </ul>
+<?php
+    if (isset($_SESSION['account']) && isset($_SESSION['password'])) {
+?>
+        <form class="navbar-form navbar-right inline-form" action="index.php" method="post">
+            <div class="form-group">
+                <input type="submit" value="Se déconnecter" class="btn btn-danger btn-sm">
+            </div>
+        </form>
+<?php
+    }
+?>
     </div>
 </nav>

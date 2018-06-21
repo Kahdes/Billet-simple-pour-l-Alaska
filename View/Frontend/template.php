@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="Public/css/queries.css" />
 
     <?php
-        if (isset($_SESSION)) {
+        if (isset($_SESSION['account']) && isset($_SESSION['password'])) {
     ?>
             <script type="text/javascript" src="Public/js/tinymce/tinymce.min.js"></script>
             <script>tinymce.init({ selector:'textarea' });</script>
@@ -35,13 +35,13 @@
 
 <body>
     
-    <?php require_once('View/navbar.php'); ?>
+    <?php require_once('View/Frontend/navbar.php'); ?>
 
     <div class="container main">
         <?= $content; ?>        
     </div>
 
-    <?php require_once('View/footer.php'); ?> 
+    <?php require_once('View/Frontend/footer.php'); ?> 
 
     <script type="text/javascript" src="Public/js/navbar.js"></script>
 

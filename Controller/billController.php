@@ -13,40 +13,36 @@ class billController {
 		$this->_Comments = new Comments();
 	}
 
-	//CHECK BILLET EXISTANT + BOUTON BILLET SUIVANT
-	public function billMax($id) {
-		$idCheck = $this->_Bill->getBillMax($id);
-		$a = 0;
-		while ($data = $idCheck->fetch()) {
-			$a += 1;
-		}
-		return $a;
-	}
-
 	//PAGE : ACCUEIL + DERNIER BILLET
+	//OK
 	public function billHome() {
 		$bill = $this->_Bill->getLastBill();
-		require_once('View/viewHome.php');
+		require_once('View/Frontend/viewHome.php');
 	}
 	
 	//PAGE : LISTE DES BILLETS
+	//OK
 	public function billList() {
 		$bill = $this->_Bill->getBillList();
-		require_once('View/viewList.php');
+		require_once('View/Frontend/viewList.php');
 	}	
 
 	//PAGE : BILLET + COMMENTAIRES
+	//OK
 	public function billInfo($id, $page) {
-		$max = $this->billMax($id + 1);
-		$bill = $this->_Bill->getBillInfo($id);
-		$pages = $this->_Comments->getTotalComments($id);
-		$liPages = 0;
-		while ($data = $pages->fetch()) {
-			$total = (int) $data['total'];
-			$liPages = ceil($total / 5);
-		}
-		$comments = $this->_Comments->getComments($id, $page);
-		require_once('View/viewBill.php');
+		if (!$this->_Bill->checkBill($id)->fetch() === false) {
+			$bill = $this->_Bill->getBill($id);
+			$list = $this->_Bill->getBillList();			
+			$pages = $this->_Comments->getTotalComments($id);
+			$comments = $this->_Comments->getComments($id, $page);
+			while ($data = $pages->fetch()) {
+				$liPages = ceil(($data['total']) / 5);
+			}
+			require_once('View/Frontend/viewBill.php');
+		} else {
+			$msg = "Le billet demandé n'existe pas.";
+			require_once('View/Frontend/viewError.php');
+		}		
 	}
 
 }

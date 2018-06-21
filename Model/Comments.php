@@ -5,7 +5,8 @@ require_once('Model/Model.php');
 class Comments extends Model {
 
 	//CHECK BILLET EXISTANT
-	public function getCommentMax($id) {
+	//OK
+	public function checkComment($id) {
 		$sql = '
 			SELECT id
 			FROM commentaires
@@ -15,20 +16,23 @@ class Comments extends Model {
 		return $this->sqlRequest($sql, $params);
 	}
 
-	//TOTAL DE COMMENTAIRES D'UN BILLET
-	public function getTotalComments($id) {
+	//COMMENTAIRE SPECIFIQUE
+	//OK
+	public function getComment($id) {
 		$sql = '
-			SELECT COUNT(*) AS total
+			SELECT id,
+				   contenu,
+				   pseudo,
+				   DATE_FORMAT(date_creation, \'%d/%m/%Y à %H:%i:%s\') AS dateFR
 			FROM commentaires
-			WHERE id_billet = :id
+			WHERE id = ?
 		';
-		$params = array(
-			"id" => $id
-		);
+		$params = array($id);
 		return $this->sqlRequest($sql, $params);
 	}
 
 	//LISTE DES COMMENTAIRES D'UN BILLET
+	//OK
 	public function getComments($id, $page) {
 		$start = $page * 5;
 		$sql = '
@@ -45,25 +49,25 @@ class Comments extends Model {
 		return $this->sqlRequest($sql, $params);
 	}
 
-	//COMMENTAIRE SPECIFIQUE
-	public function getComment($id) {
+	//TOTAL DE COMMENTAIRES D'UN BILLET
+	//OK
+	public function getTotalComments($id) {
 		$sql = '
-			SELECT id,
-				   contenu,
-				   pseudo,
-				   DATE_FORMAT(date_creation, \'%d/%m/%Y à %H:%i:%s\') AS dateFR
+			SELECT COUNT(*) AS total
 			FROM commentaires
-			WHERE id = ?
+			WHERE id_billet = :id
 		';
-		$params = array($id);
+		$params = array(
+			"id" => $id
+		);
 		return $this->sqlRequest($sql, $params);
-	}
+	}	
 
 	//AJOUT DE COMMENTAIRE
 	public function addComment($params) {
 		$sql = '
-			INSERT INTO commentaires (id_billet, contenu, pseudo, date_creation)
-			VALUES (:id, :contenu, :pseudo, NOW())
+			INSERT INTO commentaires (id_billet, contenu, pseudo, date_creation, flagged)
+			VALUES (:id, :contenu, :pseudo, NOW(), 0)
 		';
 
 		$params = array(
@@ -73,6 +77,11 @@ class Comments extends Model {
 		);
 
 		return $this->sqlRequest($sql, $params);
+	}
+
+	//SUPPRIME UN COMMENTAIRE
+	public function removeComment() {
+
 	}
 
 	//TOTAL DE FLAGS D'UN COMMENTAIRE
@@ -87,7 +96,7 @@ class Comments extends Model {
 	}
 
 	//AJOUT DE FLAG COMMENTAIRE
-	public function flagComment($id, $count) {
+	public function addFlag($id, $count) {
 		$sql = '
 			UPDATE commentaires
 			SET flagged = :count

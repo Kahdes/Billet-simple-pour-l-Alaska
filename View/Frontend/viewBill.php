@@ -3,7 +3,7 @@
 
 <?php ob_start(); ?>
 
-<?php require_once('View/banner.php');?>
+<?php require_once('View/Frontend/banner.php');?>
 
 <section class="row" id="bill">
 	<article class="col-xs-12">
@@ -25,32 +25,44 @@
 				<p class="panel-body" id="bill-body">
 					<?= htmlspecialchars($b['contenu']);?> 
 					<br/><br/>
+				</p>
+				
+				<div id="bill-pagination">
+					<ul class="pagination">
 
 			<?php
-				if ($id - 1 > 0) {
+				$count = 1;
+				foreach ($list as $l) {
+					if ($l['id'] === $_GET['id']) {
 			?>
-					<a href="index.php?action=bill&amp;id=<?= ($id-1); ?>">
-						<button class="btn btn-info pull-left full-width"><span class="glyphicon glyphicon-arrow-left"></span> Billet précédent</button>
-					</a>
+						<li id="bill-<?=$l['id'];?>">
+							<a id="bill-active" href="index.php?action=bill&amp;id=<?= $l['id'];?>" title="Vers '<?=$l['titre'];?>'"><?=$count;?></a>
+						</li>
 			<?php
+					} else {
+			?>
+						<li id="bill-<?=$l['id'];?>">
+							<a href="index.php?action=bill&amp;id=<?= $l['id'];?>" title="Vers '<?=$l['titre'];?>'"><?=$count;?></a>
+						</li>
+			<?php
+					}
+			?>
+										
+			<?php
+				$count++;
 				} 
-				if ($max !== 0) {
 			?>
-					<a href="index.php?action=bill&amp;id=<?= ($id+1); ?>">
-						<button class="btn btn-info pull-right full-width">Billet suivant <span class="glyphicon glyphicon-arrow-right"></span></button>
-					</a>
-			<?php
-				}
-			?>
-				</p>
+					</ul>
+				</div>
+				
 		<?php
 			}
 		?>
 	</article>
 </section>
 
-<?php require_once('View/addComments.php'); ?>
-<?php require_once('View/comments.php'); ?>
+<?php require_once('View/Frontend/addComments.php'); ?>
+<?php require_once('View/Frontend/comments.php'); ?>
 
 <?php $content = ob_get_clean(); ?>
 

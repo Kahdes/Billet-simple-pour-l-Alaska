@@ -10,39 +10,39 @@ class commentsController {
 		$this->_Comments = new Comments();
 	}
 
-	//CHECK COMMENTAIRE EXISTANT
-	public function commentMax($id) {
-		$idCheck = $this->_Comments->getCommentMax($id);
-		$a = 0;
-		while ($data = $idCheck->fetch()) {
-			$a += 1;
-		}
-		return $a;
-	}
+	//PAGE : COMMENTAIRE SPECIFIQUE
+	//OK
+	public function commentInfo($id) {
+		if (!$this->_Comments->checkComment($id)->fetch() === false) {
+			$comment = $this->_Comments->getComment($id);
+			require_once('View/Frontend/viewFlagged.php');
+		} else {
+			$msg = "Le commentaire demandé n'existe pas.";
+			require_once('View/Frontend/viewError.php');
+		}		
+	}	
 
-	//AJOUT DE FLAG COMMENTAIRE
+	//FONCTIONNALITE : AJOUT DE FLAG COMMENTAIRE
+	//OK
 	public function commentFlag($id) {
 		$result = $this->_Comments->getFlags($id);
 		while ($data = $result->fetch()) {
 			$flag = $data['flagged'];
 			$flag++;
 		}
-		$this->_Comments->flagComment($id, $flag);
-	}
 
-	//PAGE : COMMENTAIRE SPECIFIQUE
-	public function commentInfo($id) {
-		$comment = $this->_Comments->getComment($id);
-		require_once('View/viewFlagged.php');
+		$this->_Comments->addFlag($id, $flag);
 	}	
 
-	//REDIRECTION : AJOUT DE COMMENTAIRE
+	//FONCTIONNALITE : AJOUT DE COMMENTAIRE
+	//OK
 	public function commentAdd($id, $content, $pseudo) {
 		$params = array(
 			"id" => htmlspecialchars($id),
 			"pseudo" => htmlspecialchars($pseudo),
 			"contenu" => htmlspecialchars($content)		
-		);		
+		);
+
 		$this->_Comments->addComment($params);
 	}
 

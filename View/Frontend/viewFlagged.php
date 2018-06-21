@@ -3,10 +3,10 @@
 
 <?php ob_start(); ?>
 
-<?php require_once('View/banner.php');?>
+<?php require_once('View/Frontend/banner.php');?>
 
 	<?php
-		if (isset($_POST['confirm'])) {
+		if (isset($_POST['flag-confirm'])) {
 	?>
 			<section class="row">
 				<article class="alert alert-success">
@@ -52,8 +52,8 @@
 				<article class="col-xs-12 col-md-10 col-md-offset-1" id="flagged-form">
 					<form action="#" method="post">
 						<div class="form-group">
-							<label for="confirm">Je confirme vouloir signaler ce commentaire : </label>
-							<input type="checkbox" name="confirm" id="confirm" required/><br/>
+							<label for="flag-confirm">Je confirme vouloir signaler ce commentaire : </label>
+							<input type="checkbox" name="flag-confirm" id="flag-confirm" required/><br/>
 						</div>
 
 						<input class="btn btn-info form-control" type="submit" />
