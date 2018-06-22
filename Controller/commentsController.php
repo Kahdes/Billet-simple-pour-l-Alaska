@@ -22,18 +22,6 @@ class commentsController {
 		}		
 	}	
 
-	//FONCTIONNALITE : AJOUT DE FLAG COMMENTAIRE
-	//OK
-	public function commentFlag($id) {
-		$result = $this->_Comments->getFlags($id);
-		while ($data = $result->fetch()) {
-			$flag = $data['flagged'];
-			$flag++;
-		}
-
-		$this->_Comments->addFlag($id, $flag);
-	}	
-
 	//FONCTIONNALITE : AJOUT DE COMMENTAIRE
 	//OK
 	public function commentAdd($id, $content, $pseudo) {
@@ -45,5 +33,17 @@ class commentsController {
 
 		$this->_Comments->addComment($params);
 	}
+
+	//FONCTIONNALITE : AJOUT DE FLAG COMMENTAIRE
+	//OK
+	public function commentFlag($id) {
+		$result = $this->_Comments->getFlags($id);
+		while ($data = $result->fetch()) {
+			$flag = $data['flagged'];
+			$flag++;
+		}
+
+		$this->_Comments->addFlag($id, $flag);
+	}	
 
 }

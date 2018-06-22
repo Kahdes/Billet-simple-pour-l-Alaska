@@ -20,17 +20,38 @@ class Router {
 		require_once('View/Frontend/viewConnection.php');
 	}
 
-	public function error($msg) {
+	public function error($message) {
+		$msg = $message;
 		require_once('View/Frontend/viewError.php');
 	}
 
 	public function session() {
 		if (!isset($_SESSION)) {
 			session_start();
-			if (isset($_COOKIE['account']) && isset($_COOKIE['password'])) {
+			if (isset($_POST['disconnect']) && $_POST['disconnect'] === 'disconnect') {
+				/*
+				setcookie('pseudo', '', time() - 365*24*3600);
+				setcookie('account', '', time() - 365*24*3600);
+				setcookie('password', '', time() - 365*24*3600);
+				unset($_COOKIE['pseudo']);
+				unset($_COOKIE['account']);
+				unset($_COOKIE['password']);
+				unset($_SESSION['pseudo']);
+				unset($_SESSION['account']);
+				unset($_SESSION['password']);
+				*/
+				foreach ($_COOKIE as $key => $value) {
+					setcookie($key, '', time() - 365*24*3600);
+					unset($_COOKIE[$key]);
+				}
+				foreach ($_SESSION as $key => $value) {
+					unset($_SESSION[$key]);
+				}
+				session_destroy();
+			} elseif (!empty($_COOKIE['account']) && !empty($_COOKIE['password'])) {
 				$this->_adminController->connectAdminAccount($_COOKIE['account'], $_COOKIE['password']);
 			}						
-		}
+		} 
 	}
 
 	public function request() {
@@ -76,9 +97,18 @@ class Router {
 						$this->_adminController->connectAdminAccount($account, $password, $stay);
 					}
 					$this->connection();
+				} elseif ($_GET['action'] === 'dashboard') {
+					if (isset($_SESSION['account']) && isset($_SESSION['password'])) {
+						if ($this->_adminController->checkAdmin($_SESSION['account'], $_SESSION['password'])) {
+							$this->_adminController->dashboard();
+						} else {
+							$this->error("Votre compte n'est pas autorisé à accéder à cette page.");
+						}						
+					} else {
+						$this->error("Vous n'avez pas les droits pour accéder à cette page.");
+					}
 				} else {
-					$errMsg = "La page demandée n'existe pas.";
-					$this->error($errMsg);
+					$this->error("La page demandée n'existe pas.");
 				}
 			//PAGE D'ACCUEIL PAR DEFAUT
 			} else {

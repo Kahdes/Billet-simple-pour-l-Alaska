@@ -17,6 +17,8 @@
     
     <link rel="stylesheet" type="text/css" href="Public/css/style.css" />
     <link rel="stylesheet" type="text/css" href="Public/css/queries.css" />
+    <script type="text/javascript" src="Public/js/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
     
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -25,24 +27,11 @@
 </head>
 
 <body>
-    
-    <?php require_once('View/Frontend/navbar.php'); ?>
-
     <div class="container main">
         <?= $content; ?>        
     </div>
 
-    <?php require_once('View/Frontend/footer.php'); ?> 
-
     <script type="text/javascript" src="Public/js/navbar.js"></script>
-
-    <?php
-        if (isset($_GET['action']) && $_GET['action'] === 'billList') {
-    ?>
-            <script type="text/javascript" src="Public/js/billSlide.js"></script>
-    <?php
-        }
-    ?>
 
     <!--JQUERY-->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>

@@ -14,7 +14,7 @@
     if (isset($_SESSION['account']) && isset($_SESSION['password'])) {
 ?>
         <li class="navbar-link" id="gestion">
-            <a href="index.php?action=billList"><span class="glyphicon glyphicon-book"></span> Gestion</a>
+            <a href="index.php?action=dashboard"><span class="glyphicon glyphicon-bookmark"></span> Gestion</a>
         </li>
 <?php
     }
@@ -25,7 +25,7 @@
 ?>
         <form class="navbar-form navbar-right inline-form" action="index.php" method="post">
             <div class="form-group">
-                <input type="submit" value="Se déconnecter" class="btn btn-danger btn-sm">
+                <button class="btn btn-danger btn-sm" type="submit" value="disconnect" name="disconnect">Se déconnecter</button>
             </div>
         </form>
 <?php

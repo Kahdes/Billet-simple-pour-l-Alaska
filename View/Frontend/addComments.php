@@ -7,8 +7,18 @@
 		<form action="#" method="post">
 				
 			<div class="form-group">
-				<label for="pseudo">Pseudo : </label><br/>			
-				<input class="form-control" type="text" name="pseudo" id="pseudo" placeholder="Anonyme" required />
+				<label for="pseudo">Pseudo : </label><br/>
+				<?php
+					if (isset($_COOKIE['pseudo'])) {
+				?>
+					<input class="form-control" type="text" name="pseudo" value="<?=$_COOKIE['pseudo']?>" id="pseudo" placeholder="Anonyme" required />
+				<?php
+					} else {
+				?>
+					<input class="form-control" type="text" name="pseudo" id="pseudo" placeholder="Anonyme" required />
+				<?php		
+					}
+				?>				
 			</div>
 
 			<div class="form-group">
@@ -17,8 +27,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for="comment-confirm">Je confirme l'envoi de ce commentaire : </label>
-				<input type="checkbox" name="comment-confirm" id="comment-confirm" required />
+				<label for="comment-confirm">Je confirme l'envoi de ce commentaire : <input type="checkbox" name="comment-confirm" id="comment-confirm" required /></label>		
 			</div>	
 
 			<input class="btn btn-info form-control" type="submit" />
