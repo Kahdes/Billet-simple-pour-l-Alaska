@@ -10,6 +10,36 @@ class adminController {
 		$this->_Admin = new Admin();
 	}	
 
+	public function session() {
+		if (!isset($_SESSION)) {
+			session_start();
+			if (!empty($_COOKIE['account']) && !empty($_COOKIE['password'])) {
+				if ($this->checkAdmin($_COOKIE['account'], $_COOKIE['password'])) {
+					$this->connectAdminAccount($_COOKIE['account'], $_COOKIE['password']);
+				} else {
+					$this->disconnect();
+					$this->error("Ce compte est inconnu");
+				}
+			}						
+		}
+		if (isset($_POST['disconnect']) && $_POST['disconnect'] === 'disconnect') {
+			$this->disconnect();
+		}
+	}
+
+	public function checkAdmin($account, $password) {
+		$req = $this->_Admin->isAdminAccount($account);
+		$result = $req->fetch();
+
+		$passComp = password_verify($password, $result['p']);
+
+		if ($passComp) {
+			return true;		
+		} else {
+			return false;
+		}
+	}
+
 	public function connectAdminAccount($account, $password, $stay = 0) {
 		$req = $this->_Admin->isAdminAccount($account);
 		$result = $req->fetch();
@@ -26,22 +56,29 @@ class adminController {
 				setcookie('password', $_SESSION['password'], time() + 365*24*3600);
 			}				
 		}		
+	}	
+
+	public function disconnect() {
+		foreach ($_COOKIE as $key => $value) {
+			setcookie($key, '', time() - 365*24*3600);
+			unset($_COOKIE[$key]);
+		}
+		foreach ($_SESSION as $key => $value) {
+			unset($_SESSION[$key]);
+		}
+		session_destroy();
 	}
 
-	public function checkAdmin($account, $password) {
-		$req = $this->_Admin->isAdminAccount($account);
-		$result = $req->fetch();
-
-		$passComp = password_verify($password, $result['p']);
-
-		if ($passComp) {
-			return true;		
-		} else {
-			return false;
-		}
+	public function connection() {
+		require_once('View/Frontend/viewConnection.php');
 	}
 
 	public function dashboard() {
 		require_once('View/Backend/viewDashboard.php');
+	}	
+
+	public function error($message) {
+		$msg = $message;
+		require_once('View/Frontend/viewError.php');
 	}
 }
