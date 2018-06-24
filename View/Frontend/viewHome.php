@@ -22,9 +22,10 @@
 
 		<article class="col-xs-12" id="home-last-bill">
 			<h2 class="panel-heading">Dernier billet paru :</h2>
+			
 			<?php
 				foreach($bill as $b) {
-					$b['contenu'] = substr($b['contenu'], 0, 850);
+				$b['contenu'] = substr($b['contenu'], 0, 850);
 			?>
 					<h3 class="panel-heading">
 						<a class="custom-a" href="index.php?action=bill&amp;id=<?= $b['id'];?>">
@@ -42,6 +43,7 @@
 			<?php
 				}
 			?>
+				
 		</article>		
 	</section>
 

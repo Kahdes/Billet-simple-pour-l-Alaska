@@ -11,7 +11,7 @@
 		<section class="row" id="connexion-panel">
 			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3" id="connexion-sign-in">
 				<h3>Se connecter au site :</h3>
-				<form action="#" method="post">
+				<form action="index.php" method="post">
 					<div class="form-group">
 						<label for="sign-account">Compte : </label>
 						<input type="text" name="sign-account" id="sign-account" class="form-control input-lg" required />

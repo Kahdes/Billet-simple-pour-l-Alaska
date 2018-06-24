@@ -20,11 +20,27 @@ class Router {
 		try {
 			//SESSION
 			$this->_adminController->session();
-			//ACTION INITIALE
+
+			//CONNEXION
+			if (!empty($_POST['sign-account']) && !empty($_POST['sign-password'])) {
+				$account = $_POST['sign-account'];
+				$password = $_POST['sign-password'];
+				if (isset($_POST['sign-stay'])) {
+					$stay = 1;
+				} else {
+					$stay = 0;
+				}
+				if ($this->_adminController->checkAdmin($account, $password)) {
+					$this->_adminController->connectAdminAccount($account, $password, $stay);
+				}	
+			}
+
+			//URL : ACTION INITIALE
 			if (isset($_GET['action'])) {
+				//PAGE : LISTE DES BILLETS
 				if ($_GET['action'] === 'billList') {					
 					$this->_billController->billList();
-				//PAGE DE BILLET SPECIFIQUE
+				//PAGE : BILLET SPECIFIQUE
 				} elseif ($_GET['action'] === 'bill' && isset($_GET['id'])) {
 					//SI UNE PAGE EST SPECIFIEE
 					if (isset($_GET['page'])) {
@@ -40,25 +56,16 @@ class Router {
 						$this->_commentsController->commentAdd($_GET['id'], $_POST['comment'], $_POST['pseudo']);
 					}	
 					$this->_billController->billInfo($_GET['id'], $page);
-				//PAGE DE SIGNALEMENT
+				//PAGE : SIGNALEMENT
 				} elseif ($_GET['action'] === 'flag' && isset($_GET['id'])) {
 					if (!empty($_POST['confirm'])) {
 						$this->_commentsController->commentFlag($_GET['id']);
 					}
 					$this->_commentsController->commentInfo($_GET['id']);
-				//PAGE DE CONNEXION
-				} elseif ($_GET['action'] === 'connexion') {
-					if (!empty($_POST['sign-account']) && !empty($_POST['sign-password'])) {
-						if (isset($_POST['sign-stay'])) {
-							$stay = 1;
-						} else {
-							$stay = 0;
-						}
-						$account = $_POST['sign-account'];
-						$password = $_POST['sign-password'];
-						$this->_adminController->connectAdminAccount($account, $password, $stay);
-					}
+				//PAGE : CONNEXION
+				} elseif ($_GET['action'] === 'connexion') {					
 					$this->_adminController->connection();
+				//PAGE : TABLEAU DE BORD 
 				} elseif ($_GET['action'] === 'dashboard') {
 					if (isset($_SESSION['account']) && isset($_SESSION['password'])) {
 						if ($this->_adminController->checkAdmin($_SESSION['account'], $_SESSION['password'])) {
@@ -69,13 +76,15 @@ class Router {
 					} else {
 						$this->_adminController->error("Vous n'avez pas les droits pour accéder à cette page.");
 					}
+				//PAGE : ERREUR GENERALE
 				} else {
 					$this->_adminController->error("La page demandée n'existe pas.");
 				}
-			//PAGE D'ACCUEIL PAR DEFAUT
-			} else {
+			//PAGE : ACCUEIL PAR DEFAUT
+			} elseif (!isset($_POST['error'])) {
 				$this->_billController->billHome();
 			}
+
 		} catch (Exception $e) {
 			echo 'Erreur : ' . $e->getMessage();
 		}
