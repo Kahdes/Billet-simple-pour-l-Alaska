@@ -1,4 +1,4 @@
-<?php $title = "Tableau de bord"; ?>
+<?php $title = "Tableau de bord : gestion des signalements"; ?>
 <?php $description = ""; ?>
 
 <?php ob_start(); ?>
@@ -7,7 +7,8 @@
 	<article class="col-xs-12">
 		<h1 class="page-header">Tableau de bord</h1>
 		<p>
-			<a href="index.php">Aller vers le site -></a>
+			<a href="index.php">Aller vers le site -></a><br/>
+			<a href="index.php?action=dashboard">Retour au tableau de bord -></a>
 		</p>
 	</article>
 

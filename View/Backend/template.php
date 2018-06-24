@@ -27,6 +27,9 @@
 </head>
 
 <body>
+
+    <?php require_once('navbar.php'); ?>
+
     <div class="container main">
         <?= $content; ?>        
     </div>

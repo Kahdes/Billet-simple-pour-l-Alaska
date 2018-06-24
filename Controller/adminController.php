@@ -10,13 +10,13 @@ class adminController {
 		$this->_Admin = new Admin();
 	}	
 
-
 	public function session() {
 		if (isset($_COOKIE['account']) && isset($_COOKIE['password'])) {
 			if (!empty($_COOKIE['account']) && !empty($_COOKIE['password'])) {
 				if ($this->checkAdmin($_COOKIE['account'], $_COOKIE['password'])) {
+					session_start();
 					$this->connectAdminAccount($_COOKIE['account'], $_COOKIE['password']);
-				} else {					
+				} else {
 					$this->disconnect();					
 					$this->error("Ce compte est inconnu");
 				}
@@ -29,26 +29,6 @@ class adminController {
 			$this->disconnect();
 		}
 	}
-
-	/*
-	public function session() {
-		if (!isset($_SESSION)) {
-			session_start();
-			if (!empty($_COOKIE['account']) && !empty($_COOKIE['password'])) {
-				if ($this->checkAdmin($_COOKIE['account'], $_COOKIE['password'])) {
-					$this->connectAdminAccount($_COOKIE['account'], $_COOKIE['password']);
-				} else {
-					$this->disconnect();
-					$_POST['error'] = 'error';
-					$this->error("Ce compte est inconnu");
-				}
-			}						
-		}
-		if (isset($_POST['disconnect']) && $_POST['disconnect'] === 'disconnect') {
-			$this->disconnect();
-		}
-	}
-	*/
 
 	public function disconnect() {
 		foreach ($_COOKIE as $key => $value) {

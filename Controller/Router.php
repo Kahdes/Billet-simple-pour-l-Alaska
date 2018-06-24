@@ -69,7 +69,19 @@ class Router {
 				} elseif ($_GET['action'] === 'dashboard') {
 					if (isset($_SESSION['account']) && isset($_SESSION['password'])) {
 						if ($this->_adminController->checkAdmin($_SESSION['account'], $_SESSION['password'])) {
-							$this->_adminController->dashboard();
+							if (isset($_GET['admin'])) {
+								if ($_GET['admin'] === 'create') {
+									require_once('View/Backend/viewCreate.php');
+								} elseif ($_GET['admin'] === 'edit') {
+									require_once('View/Backend/viewEdit.php');
+								} elseif ($_GET['admin'] === 'delete') {
+									require_once('View/Backend/viewDelete.php');
+								} elseif ($_GET['admin'] === 'manage') {
+									require_once('View/Backend/viewManage.php');
+								} 
+							} else {
+								$this->_adminController->dashboard();
+							}
 						} else {
 							$this->_adminController->error("Votre compte n'est pas autorisé à accéder à cette page.");
 						}						
