@@ -5,7 +5,7 @@
 
 <?php require_once('View/Frontend/banner.php');?>
 
-	<section class="row" id="home-last-infos">
+	<section class="row" id="home">
 		<article class="col-xs-12" id="home-author">
 			<h2 class="panel-heading">A propos de l'auteur :</h2>
 			<blockquote class="panel-body">
@@ -22,7 +22,6 @@
 
 		<article class="col-xs-12" id="home-last-bill">
 			<h2 class="panel-heading">Dernier billet paru :</h2>
-			
 			<?php
 				foreach($bill as $b) {
 				$b['contenu'] = substr($b['contenu'], 0, 850);
@@ -43,8 +42,7 @@
 			<?php
 				}
 			?>
-				
-		</article>		
+		</article>
 	</section>
 
 <?php $content = ob_get_clean(); ?>

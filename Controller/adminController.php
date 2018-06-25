@@ -10,6 +10,39 @@ class adminController {
 		$this->_Admin = new Admin();
 	}	
 
+//PAGES
+
+	//PANEL DE CONNECTION
+	public function connection() {
+		require_once('View/Frontend/viewConnection.php');
+	}
+
+	//ERREUR
+	public function error($message) {
+		$msg = $message;
+		$_POST['error'] = 'error';
+		require_once('View/Frontend/viewError.php');
+	}
+
+//TESTS
+
+	//CHECK DONNEES D'ADMINISTRATEUR
+	public function checkAdmin($account, $password) {
+		$req = $this->_Admin->isAdminAccount($account);
+		$result = $req->fetch();
+
+		$passComp = password_verify($password, $result['p']);
+
+		if ($passComp) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+//FONCTIONNALITES
+
+	//(RE)CREATION DE SESSION
 	public function session() {
 		if (isset($_COOKIE['account']) && isset($_COOKIE['password'])) {
 			if (!empty($_COOKIE['account']) && !empty($_COOKIE['password'])) {
@@ -30,35 +63,7 @@ class adminController {
 		}
 	}
 
-	public function disconnect() {
-		foreach ($_COOKIE as $key => $value) {
-			setcookie($key, '', time() - 365*24*3600, '/');		
-			setcookie($key, '', time() - 365*24*3600);
-			unset($_COOKIE[$key]);
-		}
-		if (isset($_SESSION)) {
-			foreach ($_SESSION as $key => $value) {
-				unset($_SESSION[$key]);
-			}
-			session_destroy();
-		}		
-	}
-
-	//CHECK DONNEES D'ADMINISTRATEUR
-	public function checkAdmin($account, $password) {
-		$req = $this->_Admin->isAdminAccount($account);
-		$result = $req->fetch();
-
-		$passComp = password_verify($password, $result['p']);
-
-		if ($passComp) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	//CREATION DONNEES DE SESSION / COOKIES
+	//CREATION DE DONNEES DE SESSION & COOKIES
 	public function connectAdminAccount($account, $password, $stay = 0) {
 		$req = $this->_Admin->isAdminAccount($account);
 		$result = $req->fetch();
@@ -74,19 +79,21 @@ class adminController {
 			setcookie('account', $_SESSION['account'], time() + 365*24*3600);
 			setcookie('password', $_SESSION['password'], time() + 365*24*3600);		
 		}
-	}		
-
-	public function connection() {
-		require_once('View/Frontend/viewConnection.php');
-	}
-
-	public function dashboard() {
-		require_once('View/Backend/viewDashboard.php');
 	}	
 
-	public function error($message) {
-		$msg = $message;
-		$_POST['error'] = 'error';
-		require_once('View/Frontend/viewError.php');
+	//DECONNECTION
+	public function disconnect() {
+		foreach ($_COOKIE as $key => $value) {
+			setcookie($key, '', time() - 365*24*3600, '/');		
+			setcookie($key, '', time() - 365*24*3600);
+			unset($_COOKIE[$key]);
+		}
+		if (isset($_SESSION)) {
+			foreach ($_SESSION as $key => $value) {
+				unset($_SESSION[$key]);
+			}
+			session_destroy();
+		}		
 	}
+	
 }

@@ -4,6 +4,9 @@ require_once('Model/Model.php');
 
 class Admin extends Model {
 
+//TESTS
+
+	//CHECK COMPTE ADMINISTRATEUR
 	public function isAdminAccount($account) {
 		$sql = '
 			SELECT id,

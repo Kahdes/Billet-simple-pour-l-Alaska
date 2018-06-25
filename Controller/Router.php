@@ -8,11 +8,13 @@ class Router {
 	
 	private $_billController;
 	private $_adminController;
+	private $_panelController;
 	private $_commentsController;
 
 	public function __construct() {
 		$this->_billController = new billController();
 		$this->_adminController = new adminController();
+		$this->_panelController = new panelController();
 		$this->_commentsController = new commentsController();
 	}			
 
@@ -71,16 +73,16 @@ class Router {
 						if ($this->_adminController->checkAdmin($_SESSION['account'], $_SESSION['password'])) {
 							if (isset($_GET['admin'])) {
 								if ($_GET['admin'] === 'create') {
-									require_once('View/Backend/viewCreate.php');
+									$this->_panelController->create();
 								} elseif ($_GET['admin'] === 'edit') {
-									require_once('View/Backend/viewEdit.php');
+									$this->_panelController->edit();
 								} elseif ($_GET['admin'] === 'delete') {
-									require_once('View/Backend/viewDelete.php');
+									$this->_panelController->delete();
 								} elseif ($_GET['admin'] === 'manage') {
-									require_once('View/Backend/viewManage.php');
+									$this->_panelController->manage();
 								} 
 							} else {
-								$this->_adminController->dashboard();
+								$this->_panelController->dashboard();
 							}
 						} else {
 							$this->_adminController->error("Votre compte n'est pas autorisé à accéder à cette page.");

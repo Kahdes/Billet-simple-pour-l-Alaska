@@ -10,8 +10,9 @@ class commentsController {
 		$this->_Comments = new Comments();
 	}
 
-	//PAGE : COMMENTAIRE SPECIFIQUE
-	//OK
+//PAGES
+
+	//COMMENTAIRE SPECIFIQUE
 	public function commentInfo($id) {
 		if (!$this->_Comments->checkComment($id)->fetch() === false) {
 			$comment = $this->_Comments->getComment($id);
@@ -20,10 +21,11 @@ class commentsController {
 			$msg = "Le commentaire demandé n'existe pas.";
 			require_once('View/Frontend/viewError.php');
 		}		
-	}	
+	}
 
-	//FONCTIONNALITE : AJOUT DE COMMENTAIRE
-	//OK
+//FONCTIONNALITES
+
+	//AJOUTE UN COMMENTAIRE
 	public function commentAdd($id, $content, $pseudo) {
 		$params = array(
 			"id" => htmlspecialchars($id),
@@ -34,8 +36,7 @@ class commentsController {
 		$this->_Comments->addComment($params);
 	}
 
-	//FONCTIONNALITE : AJOUT DE FLAG COMMENTAIRE
-	//OK
+	//AJOUTE UN FLAG
 	public function commentFlag($id) {
 		$result = $this->_Comments->getFlags($id);
 		while ($data = $result->fetch()) {

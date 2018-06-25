@@ -3,34 +3,12 @@
 
 <?php ob_start(); ?>
 
-<section class="row" id="bill">
+<section class="row" id="dashboard-manage">
 	<article class="col-xs-12">
-		<h1 class="page-header">Tableau de bord</h1>
-		<p>
-			<a href="index.php">Aller vers le site -></a><br/>
-			<a href="index.php?action=dashboard">Retour au tableau de bord -></a>
-		</p>
+		<h1 class="page-header">Gérer les commentaires</h1>
 	</article>
 
 	<article class="col-xs-12">
-		<h2>Billets</h1>
-		<p>
-			<a class="btn btn-success" href="index.php?action=dashboard&admin=create">Créer un billet</a>
-			<a class="btn btn-info" href="index.php?action=dashboard&admin=edit">Editer un billet</a>
-			<a class="btn btn-danger" href="index.php?action=dashboard&admin=delete">Supprimer un billet</a>
-		</p>
-	</article>
-
-	<article class="col-xs-12">
-		<h2>Commentaires</h1>
-		<p>
-			<a class="btn btn-warning" href="index.php?action=dashboard&admin=manage">Gérer les signalements</a>
-		</p>
-	</article>
-
-	<article class="col-xs-12">
-		
-		
 	</article>
 </section>
 

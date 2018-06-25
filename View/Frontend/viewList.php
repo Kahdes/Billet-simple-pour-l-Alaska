@@ -5,7 +5,7 @@
 
 <?php require_once('View/Frontend/banner.php');?>
 
-<section class="row" id="billList-list">
+<section class="row" id="bill-list">
 	<br />
 	<?php
 		$total = 0;
@@ -34,9 +34,9 @@
 	?>
 </section>
 
-<div class="col-xs-12" id="billList-btn">
+<div class="col-xs-12" id="bill-list-btn">
 	<button class="btn btn-large btn-info" id="prev">&laquo; Précédent</button>
-	<span><span id="current-bill">1</span> / <?= $total; ?></span>
+	<span><span id="current-bill">1</span> / <?=$total;?></span>
 	<button class="btn btn-large btn-info" id="next">Suivant &raquo;</button>
 </div>
 

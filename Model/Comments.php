@@ -4,8 +4,9 @@ require_once('Model/Model.php');
 
 class Comments extends Model {
 
+//TESTS
+
 	//CHECK BILLET EXISTANT
-	//OK
 	public function checkComment($id) {
 		$sql = '
 			SELECT id
@@ -16,8 +17,9 @@ class Comments extends Model {
 		return $this->sqlRequest($sql, $params);
 	}
 
+//GENERAL
+
 	//COMMENTAIRE SPECIFIQUE
-	//OK
 	public function getComment($id) {
 		$sql = '
 			SELECT id,
@@ -32,7 +34,6 @@ class Comments extends Model {
 	}
 
 	//LISTE DES COMMENTAIRES D'UN BILLET
-	//OK
 	public function getComments($id, $page) {
 		$start = $page * 5;
 		$sql = '
@@ -50,7 +51,6 @@ class Comments extends Model {
 	}
 
 	//TOTAL DE COMMENTAIRES D'UN BILLET
-	//OK
 	public function getTotalComments($id) {
 		$sql = '
 			SELECT COUNT(*) AS total
@@ -63,7 +63,7 @@ class Comments extends Model {
 		return $this->sqlRequest($sql, $params);
 	}	
 
-	//AJOUT DE COMMENTAIRE
+	//AJOUTE UN COMMENTAIRE
 	public function addComment($params) {
 		$sql = '
 			INSERT INTO commentaires (id_billet, contenu, pseudo, date_creation, flagged)
@@ -79,10 +79,7 @@ class Comments extends Model {
 		return $this->sqlRequest($sql, $params);
 	}
 
-	//SUPPRIME UN COMMENTAIRE
-	public function removeComment() {
-
-	}
+//FLAGS
 
 	//TOTAL DE FLAGS D'UN COMMENTAIRE
 	public function getFlags($id) {
@@ -107,6 +104,13 @@ class Comments extends Model {
 			"count" => $count 
 		);
 		return $this->sqlRequest($sql, $params);
+	}
+
+//ADMINISTRATEUR
+
+	//SUPPRIME UN COMMENTAIRE
+	public function removeComment() {
+
 	}
 
 }

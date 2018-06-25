@@ -13,22 +13,21 @@ class billController {
 		$this->_Comments = new Comments();
 	}
 
-	//PAGE : ACCUEIL + DERNIER BILLET
-	//OK
+//PAGES
+
+	//ACCUEIL & DERNIER BILLET
 	public function billHome() {
 		$bill = $this->_Bill->getLastBill();
 		require_once('View/Frontend/viewHome.php');
 	}
 	
-	//PAGE : LISTE DES BILLETS
-	//OK
+	//LISTE DES BILLETS
 	public function billList() {
 		$bill = $this->_Bill->getBillList();
 		require_once('View/Frontend/viewList.php');
 	}	
 
-	//PAGE : BILLET + COMMENTAIRES
-	//OK
+	//BILLET & COMMENTAIRES
 	public function billInfo($id, $page) {
 		if (!$this->_Bill->checkBill($id)->fetch() === false) {
 			$bill = $this->_Bill->getBill($id);
@@ -43,6 +42,37 @@ class billController {
 			$msg = "Le billet demandé n'existe pas.";
 			require_once('View/Frontend/viewError.php');
 		}		
+	}
+
+//FONCTIONNALITES
+
+	//AJOUTE UN BILLET
+	public function billAdd($title, $content) {
+		$params = array(
+			"titre" => htmlspecialchars($title),
+			"contenu" => htmlspecialchars($content)		
+		);
+
+		$this->_Comments->addBill($params);
+	}
+
+	//EDITE UN BILLET
+	public function billEdit($title, $content) {
+		$params = array(
+			"titre" => htmlspecialchars($title),
+			"contenu" => htmlspecialchars($content)		
+		);
+
+		$this->_Comments->editBill($params);
+	}
+
+	//SUPPRIME UN BILLET
+	public function billDelete($id) {
+		$params = array(
+			"id" => $id		
+		);
+
+		$this->_Comments->addDelete($params);
 	}
 
 }

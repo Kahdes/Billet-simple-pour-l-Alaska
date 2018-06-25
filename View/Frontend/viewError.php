@@ -5,7 +5,7 @@
 
 <?php require_once('View/Frontend/banner.php');?>
 
-<section class="row">
+<section class="row" id="error">
 	<article class="alert alert-danger">
 		<h1 class="panel-heading"><?= $msg;?></h1>
 		<p class="panel-body">

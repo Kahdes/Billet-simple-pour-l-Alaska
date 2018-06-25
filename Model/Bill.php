@@ -4,8 +4,9 @@ require_once('Model/Model.php');
 
 class Bill extends Model {
 
+//TESTS
+
 	//CHECK BILLET EXISTANT
-	//OK
 	public function checkBill($id) {
 		$sql = '
 			SELECT id
@@ -16,8 +17,9 @@ class Bill extends Model {
 		return $this->sqlRequest($sql, $params);
 	}
 
+//GENERAL
+
 	//INFORMATIONS DE BILLET
-	//OK
 	public function getBill($id) {
 		$sql = '
 			SELECT id,
@@ -32,7 +34,6 @@ class Bill extends Model {
 	}
 	
 	//DERNIER BILLET DU SITE
-	//OK
 	public function getLastBill() {
 		$sql = '
 			SELECT id,
@@ -47,7 +48,6 @@ class Bill extends Model {
 	}
 
 	//LISTE DE TOUS LES BILLETS
-	//OK
 	public function getBillList() {
 		$sql = '
 			SELECT id,
@@ -60,52 +60,46 @@ class Bill extends Model {
 		return $this->sqlRequest($sql);
 	}
 
+//ADMINISTRATEUR
+
 	//AJOUTE UN BILLET
-	public function addBill() {
-
-	}	
-
-	//SUPPRIME UN BILLET + COMMENTAIRES ASSOCIES
-	public function removeBill() {
-
-	}	
-
-	//MODIFIE LE CONTENU D'UN BILLET
-	public function modifyBill() {
-
-	}
-
-	//POUR ADMIN
-	public function manageBill($action, $params) {
-		if ($action === 'add') {
-			$sql = '
-				INSERT INTO billets (titre, contenu, date_creation)
-				VALUES (:titre, :contenu, :date_creation)
-			';
-		} elseif ($action === 'remove') {
-			$sql = '
-				DELETE FROM billets
-				WHERE id = :id
-			';
-		} elseif ($action === 'modify') {
-			$sql = '
-				UPDATE billets
-				SET titre         = :titre
-				    contenu       = :contenu
-				    date_creation = :date_creation
-			';
-		} else {
-			throw new Exception("Action de billet inconnue");	
-		}
-
+	public function addBill($params) {
+		$sql = '
+			INSERT INTO billets (titre, contenu, date_creation)
+			VALUES (:titre, :contenu, NOW())
+		';
 		$params = array(
 			"titre" => $params['titre'],
-			"contenu" => $params['contenu'],
-			"date_creation" => $params['date_creation'],
-			"id" => $params['id']
+			"contenu" => $params['contenu']
 		);
-
 		return $this->sqlRequest($sql, $params);
 	}		
+
+	//MODIFIE LE CONTENU D'UN BILLET
+	public function modifyBill($params) {
+		$sql = '
+			UPDATE billets
+			SET titre         = :titre
+			    contenu       = :contenu
+			    date_creation = NOW()
+		';
+		$params = array(
+			"titre" => $params['titre'],
+			"contenu" => $params['contenu']
+		);
+		return $this->sqlRequest($sql, $params);
+	}	
+
+	//SUPPRIME UN BILLET
+	public function deleteBill($id) {
+		$sql = '
+			DELETE FROM billets
+			WHERE id = :id
+		';
+		$params = array(
+			"id" => $id
+		);
+		return $this->sqlRequest($sql, $params);
+	}	
 
 }
