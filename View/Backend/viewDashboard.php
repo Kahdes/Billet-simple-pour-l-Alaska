@@ -8,55 +8,65 @@
 		<h1 class="page-header">Tableau de bord</h1>
 	</article>
 
-	<section class="col-xs-12" id="dashboard-infos">
-		<article class="col-xs-6" id="dashboard-last-bill">
-		<h2 class="panel-heading">Dernier billet paru :</h2>			
+	<section class="col-xs-12 col-md-6 table-responsive" id="dashboard-bills">
+		<table class="col-xs-12 table table-bordered table-striped table-condensed">
+			<caption><h2>Liste des billets :</h2></caption>
+			<tr>
+				<th class="col-xs-9 ">Billet</th>
+				<th class="col-xs-3">Action</th>
+			</tr>
 		<?php
 			foreach($bill as $b) {
-			$b['contenu'] = substr($b['contenu'], 0, 850);
 		?>
-				<h3 class="panel-heading">
-					<a class="custom-a" href="index.php?action=bill&amp;id=<?= $b['id'];?>">
-						<?= htmlspecialchars($b['titre']);?>
-					</a>
-				</h3>
-				<p class="panel-body">
-					<?= htmlspecialchars($b['contenu']);?>... 
-					<a class="custom-a" href="index.php?action=bill&amp;id=<?= $b['id'];?>">Lire la suite</a>
-					<br/><br/>				
-					<em class="pull-right">
-						Publié le : <?= htmlspecialchars($b['dateFR']);?>
-					</em>
-				</p>
+				<tr>
+					<td>
+						<h4 class="word-break">
+							<a class="custom-a" href="index.php?action=bill&amp;id=<?= $b['id'];?>">
+								<?= $b['titre'];?>
+							</a>
+						</h4>
+						<p class="pull-left"><em><?= $b['dateFR'];?></em></p>
+					</td>
+					<td>
+						<a class="btn btn-info btn-block" href="index.php?action=dashboard&admin=edit&id=<?=$b['id'];?>">Modifier</a>
+						<a class="btn btn-danger btn-block" href="index.php?action=dashboard&admin=delete&id=<?=$b['id'];?>">Supprimer</a>
+					</td>					
+				</tr>
 		<?php
 			}
-		?>				
-		</article>
-
-		<article class="col-xs-6" id="dashboard-flagged-comment">
-			<h2 class="panel-heading">Commentaire le plus signalé :</h2>			
-		</article>
-	</section>
-	
-	<section class="col-xs-12" id="dashboard-actions">
-		<article class="col-xs-12" id="dashboard-bill-actions">
-			<h2>Billets :</h1>
-			<p>
-				<a class="btn btn-success" href="index.php?action=dashboard&admin=create">Créer un billet</a>
-				<a class="btn btn-info" href="index.php?action=dashboard&admin=edit">Editer un billet</a>
-				<a class="btn btn-danger" href="index.php?action=dashboard&admin=delete">Supprimer un billet</a>
-			</p>
-		</article>
-
-		<article class="col-xs-12" id="dashboard-comment-actions">
-			<h2>Commentaires :</h1>
-			<p>
-				<a class="btn btn-warning" href="index.php?action=dashboard&admin=manage">Gérer les signalements</a>
-			</p>
-		</article>
+		?>
+		</table>
 	</section>
 
-	
+	<section class="col-xs-12 col-md-6 table-responsive" id="dashboard-comments">
+		<table class="col-xs-12 table table-bordered table-striped table-condensed">
+			<caption><h2>Commentaires signalés :</h2></caption>
+			<tr>
+				<th class="col-xs-9 word-break">Commentaire</th>
+				<th class="col-xs-3">Action</th>
+			</tr>
+		<?php
+			foreach($comments as $c) {
+		?>
+				<tr>
+					<td>
+						<h4>
+							<a class="custom-a" href="index.php?action=flag&amp;id=<?= $c['id'];?>">
+								<?= $c['pseudo'];?>
+							</a>
+						</h4>
+						<p>Signalé <strong><?= $c['flagged'];?></strong> fois</p>
+					</td>
+					<td>
+						<a class="btn btn-info btn-block" href="index.php?action=dashboard&admin=commentReset&id=<?=$c['id'];?>">Rétablir</a>
+						<a class="btn btn-danger btn-block" href="index.php?action=dashboard&admin=commentDelete&id=<?=$c['id'];?>">Supprimer</a>
+					</td>					
+				</tr>
+		<?php
+			}
+		?>
+		</table>
+	</section>	
 </section>
 
 <?php $content = ob_get_clean(); ?>

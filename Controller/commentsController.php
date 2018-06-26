@@ -14,7 +14,7 @@ class commentsController {
 
 	//COMMENTAIRE SPECIFIQUE
 	public function commentInfo($id) {
-		if (!$this->_Comments->checkComment($id)->fetch() === false) {
+		if ($this->commentCheck($id)) {
 			$comment = $this->_Comments->getComment($id);
 			require_once('View/Frontend/viewFlagged.php');
 		} else {
@@ -24,6 +24,16 @@ class commentsController {
 	}
 
 //FONCTIONNALITES
+
+	//CHECK UN BILLET
+	public function commentCheck($id) {
+		$test = $this->_Comments->checkComment($id);
+		if ($test->fetch()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	//AJOUTE UN COMMENTAIRE
 	public function commentAdd($id, $content, $pseudo) {
@@ -45,6 +55,21 @@ class commentsController {
 		}
 
 		$this->_Comments->addFlag($id, $flag);
-	}	
+	}
+
+	//SUPPRIME UN COMMENTAIRE
+	public function commentDelete($id) {
+		$this->_Comments->deleteComment($id);
+	}
+
+	//SUPPRIME UNE LISTE DE COMMENTAIRES
+	public function commentListDelete($id) {
+		$this->_Comments->deleteCommentList($id);
+	}
+
+	//REINITIALISE LE COMPTEUR DE FLAG
+	public function commentFlagReset($id) {
+		$this->_Comments->resetFlagComment($id);
+	}
 
 }

@@ -25,7 +25,7 @@
 ?>
         <form class="navbar-form navbar-right inline-form" action="index.php" method="post">
             <div class="form-group">
-                <button class="btn btn-danger btn-sm" type="submit" value="disconnect" name="disconnect">Se déconnecter</button>
+                <button class="btn btn-danger btn-sm" type="submit" value="disconnect" name="disconnect">Déconnexion</button>
             </div>
         </form>
 <?php

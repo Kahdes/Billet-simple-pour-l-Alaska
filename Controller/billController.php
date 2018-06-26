@@ -29,7 +29,7 @@ class billController {
 
 	//BILLET & COMMENTAIRES
 	public function billInfo($id, $page) {
-		if (!$this->_Bill->checkBill($id)->fetch() === false) {
+		if ($this->billCheck($id)) {
 			$bill = $this->_Bill->getBill($id);
 			$list = $this->_Bill->getBillList();			
 			$pages = $this->_Comments->getTotalComments($id);
@@ -46,33 +46,40 @@ class billController {
 
 //FONCTIONNALITES
 
+	//CHECK UN BILLET
+	public function billCheck($id) {
+		$test = $this->_Bill->checkBill($id);
+		if ($test->fetch()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	//AJOUTE UN BILLET
 	public function billAdd($title, $content) {
 		$params = array(
-			"titre" => htmlspecialchars($title),
-			"contenu" => htmlspecialchars($content)		
+			"titre" => $title,
+			"contenu" => $content		
 		);
 
-		$this->_Comments->addBill($params);
+		return $result = $this->_Bill->addBill($params);
 	}
 
 	//EDITE UN BILLET
-	public function billEdit($title, $content) {
+	public function billEdit($id, $title, $content) {
 		$params = array(
-			"titre" => htmlspecialchars($title),
-			"contenu" => htmlspecialchars($content)		
+			"id" => $id,
+			"titre" => $title,
+			"contenu" => $content
 		);
 
-		$this->_Comments->editBill($params);
+		$this->_Bill->editBill($params);
 	}
 
 	//SUPPRIME UN BILLET
 	public function billDelete($id) {
-		$params = array(
-			"id" => $id		
-		);
-
-		$this->_Comments->addDelete($params);
+		$this->_Bill->deleteBill($id);
 	}
 
 }

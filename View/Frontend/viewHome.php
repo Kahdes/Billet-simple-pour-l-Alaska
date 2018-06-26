@@ -28,17 +28,17 @@
 			?>
 					<h3 class="panel-heading">
 						<a class="custom-a" href="index.php?action=bill&amp;id=<?= $b['id'];?>">
-							<?= htmlspecialchars($b['titre']);?>
+							<?= $b['titre'];?>
 						</a>
 					</h3>
-					<p class="panel-body">
-						<?= htmlspecialchars($b['contenu']);?>... 
+					<div class="panel-body">
+						<?= $b['contenu'];?>... 
 						<a class="custom-a" href="index.php?action=bill&amp;id=<?= $b['id'];?>">Lire la suite</a>
 						<br/><br/>				
 						<em class="pull-right">
-							Publié le : <?= htmlspecialchars($b['dateFR']);?>
+							Publié le : <?= $b['dateFR'];?>
 						</em>
-					</p>
+					</div>
 			<?php
 				}
 			?>

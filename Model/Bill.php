@@ -76,16 +76,18 @@ class Bill extends Model {
 	}		
 
 	//MODIFIE LE CONTENU D'UN BILLET
-	public function modifyBill($params) {
+	public function editBill($params) {
 		$sql = '
 			UPDATE billets
-			SET titre         = :titre
-			    contenu       = :contenu
+			SET titre         = :titre,
+			    contenu       = :contenu,
 			    date_creation = NOW()
+			WHERE id = :id
 		';
 		$params = array(
 			"titre" => $params['titre'],
-			"contenu" => $params['contenu']
+			"contenu" => $params['contenu'],
+			"id" => $params['id']
 		);
 		return $this->sqlRequest($sql, $params);
 	}	

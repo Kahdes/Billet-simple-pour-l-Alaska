@@ -1,14 +1,17 @@
 @media all and (min-width: 1616px) {
-	.main {
+	.main,
+	.main-admin {
 		width: 1600px !important;
 	}
 }
 
 @media all and (max-width: 767px) {
-	.main {
+	.main,
+	.main-admin {
 		margin-top: 0 !important;
 	}
 
+	/*BOOTSTRAP*/
 	.navbar {
 		margin: 0;
 	}
@@ -16,10 +19,8 @@
 	.navbar-fixed-top {
 		position: relative;
 	}
-}
 
-@media all and (max-width: 340px) {
-	.full-width {
-		width: 100% !important;
+	.table-responsive {
+		border: none;
 	}
 }

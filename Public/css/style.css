@@ -25,6 +25,10 @@ hr {
 	box-shadow: 0px 0px 10px 7.5px rgba(0, 0, 0, .25);
 }
 
+.word-break {
+	word-break: break-all;
+}
+
 /*BOOTSTRAP*/
 input[type=checkbox] {	
 	position: relative;
@@ -32,8 +36,17 @@ input[type=checkbox] {
 	margin-top: 0 !important;
 }
 
+.pagination li,
+.pagination li a {
+	width: 45px !important;
+}
+
 .navbar-form {
 	margin-top: 10px !important;
+	margin-bottom: 0 !important;
+}
+
+.alert {
 	margin-bottom: 0 !important;
 }
 
@@ -196,3 +209,17 @@ footer #footer-info {
 #dashboard-manage {
 	height: inherit !important;
 }
+
+/*DASHBOARD*/
+table {
+	background: white;
+}
+
+caption {
+	color: rgb(51,51,51);
+}
+
+table th {
+	text-align: center;
+}
+

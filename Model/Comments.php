@@ -50,6 +50,8 @@ class Comments extends Model {
 		return $this->sqlRequest($sql, $params);
 	}
 
+	
+
 	//TOTAL DE COMMENTAIRES D'UN BILLET
 	public function getTotalComments($id) {
 		$sql = '
@@ -104,13 +106,70 @@ class Comments extends Model {
 			"count" => $count 
 		);
 		return $this->sqlRequest($sql, $params);
-	}
+	}	
 
 //ADMINISTRATEUR
 
-	//SUPPRIME UN COMMENTAIRE
-	public function removeComment() {
+	//LISTE DES COMMENTAIRES FLAGGED
+	public function getFlaggedComments() {
+		$sql = '
+			SELECT id,
+				   contenu,
+				   pseudo,
+				   flagged
+			FROM commentaires
+			WHERE flagged > 0
+			ORDER BY flagged DESC
+		';
+		return $this->sqlRequest($sql);
+	}
 
+	/*
+	public function getTotalFlaggedComments($id) {
+		$sql = '
+			SELECT COUNT(*) AS total
+			FROM commentaires
+			WHERE flagged > 0
+		';
+		return $this->sqlRequest($sql, $params);
+	}
+	*/
+
+	//SUPPRIME UN COMMENTAIRES
+	public function deleteComment($id) {
+		$sql = '
+			DELETE FROM commentaires
+			WHERE id = :id
+		';
+		$params = array(
+			"id" => $id
+		);
+		return $this->sqlRequest($sql, $params);
+	}
+
+	//SUPPRIME UNE LISTE DE COMMENTAIRES D'UN BILLET
+	public function deleteCommentList($id) {
+		$sql = '
+			DELETE FROM commentaires
+			WHERE id_billet = :id
+		';
+		$params = array(
+			"id" => $id
+		);
+		return $this->sqlRequest($sql, $params);
+	}
+
+	//RESET LES FLAGS D'UN COMMENTAIRE
+	public function resetFlagComment($id) {
+		$sql = '
+			UPDATE commentaires
+			SET flagged = 0
+			WHERE id = :id
+		';
+		$params = array(
+			"id" => $id 
+		);
+		return $this->sqlRequest($sql, $params);
 	}
 
 }

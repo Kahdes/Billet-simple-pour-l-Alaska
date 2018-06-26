@@ -11,21 +11,21 @@
 			foreach($bill as $b) {
 		?>
 				<h1 class="panel-heading" id="bill-title">
-					<?= htmlspecialchars($b['titre']);?>					
+					<?= $b['titre'];?>					
 				</h1>
 
 				<p id="bill-date">
 					<em>
-						Publié le : <?= htmlspecialchars($b['dateFR']);?>
+						Publié le : <?= $b['dateFR'];?>
 					</em>
 				</p>
 
 				<hr/>
 				
-				<p class="panel-body" id="bill-body">
-					<?= htmlspecialchars($b['contenu']);?> 
+				<div class="panel-body" id="bill-body">
+					<?= $b['contenu'];?> 
 					<br/><br/>
-				</p>
+				</div>
 				
 				<div id="bill-pagination">
 					<ul class="pagination">
@@ -46,15 +46,11 @@
 						</li>
 			<?php
 					}
-			?>
-										
-			<?php
 				$count++;
 				} 
 			?>
 					</ul>
-				</div>
-				
+				</div>				
 		<?php
 			}
 		?>
