@@ -7,10 +7,8 @@
 	<article class="col-xs-12">
 		<h1 class="page-header">Supprimer un billet</h1>
 	</article>
-</section>
 
-<section class="row" id="bill">
-	<article>
+	<article class="col-xs-12" id="bill">
 	<?php
 		foreach($bill as $b) {
 	?>
@@ -33,14 +31,16 @@
 	<?php
 		}
 	?>
+	
 	</article>
-</section>
 
-<section class="row">
 	<article class="col-xs-12">
+		<br/>
 		<form action="index.php?action=dashboard&admin=delete&id=<?=$_GET['id']?>" method="post">
-			<label for="delete-bill-confirm">Confirmer la suppression du billet et de ses commentaires : </label>
-			<input type="checkbox" name="delete-bill-confirm" id="delete-bill-confirm" required />
+			<div class="form-group">
+				<label for="delete-bill-confirm">Confirmer la suppression du billet et de ses commentaires : </label>
+				<input type="checkbox" name="delete-bill-confirm" id="delete-bill-confirm" required />
+			</div>			
 
 			<div class="form-group">
 				<button class="btn btn-danger btn-block" type="submit">Supprimer le billet</button>

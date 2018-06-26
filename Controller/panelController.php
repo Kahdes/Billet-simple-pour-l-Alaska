@@ -34,13 +34,13 @@ class panelController {
 		if (isset($previsualize)) {
 			$bill = $this->_Bill->getLastBill();
 		} 
-		require_once('View/Backend/viewCreate.php');		
+		require_once('View/Backend/viewBillCreate.php');		
 	}
 
 	//EDITION DE BILLET
 	public function edit($id) {
 		$bill = $this->_Bill->getBill($id);
-		require_once('View/Backend/viewEdit.php');
+		require_once('View/Backend/viewBillEdit.php');
 	}
 
 	//SUPPRESSION DE BILLET
@@ -49,7 +49,7 @@ class panelController {
 			$deleted;
 		}
 		$bill = $this->_Bill->getBill($id);
-		require_once('View/Backend/viewDelete.php');
+		require_once('View/Backend/viewBillDelete.php');
 	}
 
 	//GESTION DES COMMENTAIRES

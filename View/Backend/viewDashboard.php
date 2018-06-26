@@ -8,7 +8,7 @@
 		<h1 class="page-header">Tableau de bord</h1>
 	</article>
 
-	<section class="col-xs-12 col-md-6 table-responsive" id="dashboard-bills">
+	<article class="col-xs-12 col-md-6 table-responsive" id="dashboard-bills">
 		<table class="col-xs-12 table table-bordered table-striped table-condensed">
 			<caption><h2>Liste des billets :</h2></caption>
 			<tr>
@@ -36,9 +36,9 @@
 			}
 		?>
 		</table>
-	</section>
+	</article>
 
-	<section class="col-xs-12 col-md-6 table-responsive" id="dashboard-comments">
+	<article class="col-xs-12 col-md-6 table-responsive" id="dashboard-comments">
 		<table class="col-xs-12 table table-bordered table-striped table-condensed">
 			<caption><h2>Commentaires signalés :</h2></caption>
 			<tr>
@@ -66,7 +66,7 @@
 			}
 		?>
 		</table>
-	</section>	
+	</article>	
 </section>
 
 <?php $content = ob_get_clean(); ?>

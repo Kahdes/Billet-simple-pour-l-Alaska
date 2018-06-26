@@ -7,10 +7,8 @@
 	<article class="col-xs-12">
 		<h1 class="page-header">Gérer les commentaires</h1>
 	</article>
-</section>
 
-<section class="row" id="dashboard-manage-comment">
-	<article class="col-xs-12">
+	<article class="col-xs-12" id="bill">
 		<?php
 			foreach($comment as $c) {
 		?>
@@ -34,10 +32,9 @@
 			}
 		?>
 	</article>
-</section>
 
-<section class="row" id="dashboard-manage-options">
 	<article class="col-xs-12">
+		<br/>
 		<form action="index.php?action=dashboard&admin=commentDelete&id=<?=$_GET['id'];?>" method="post">
 			<div class="form-group">
 				<label for="delete-comment-confirm">Confirmer la suppression du commentaire : </label>
@@ -45,7 +42,7 @@
 			</div>
 
 			<div class="form-group">
-				<button class="btn btn-danger col-xs-12" name="reset" type="submit">Supprimer le commentaire</button>
+				<button class="btn btn-danger btn-block" name="reset" type="submit">Supprimer le commentaire</button>
 			</div>
 		</form>
 	</article>
