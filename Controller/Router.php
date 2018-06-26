@@ -56,17 +56,25 @@ class Router {
 					//SI UN COMMENTAIRE EST ENVOYE
 					if (!empty($_POST['pseudo']) && !empty($_POST['comment'])) {
 						$this->_commentsController->commentAdd($_GET['id'], $_POST['comment'], $_POST['pseudo']);
-					}	
-					$this->_billController->billInfo($_GET['id'], $page);
+						$this->_adminController->frontSuccess("Votre commentaire a bien été envoyé !");
+					} else {
+						$this->_billController->billInfo($_GET['id'], $page);
+					}					
 				//PAGE : SIGNALEMENT
 				} elseif ($_GET['action'] === 'flag' && isset($_GET['id'])) {
 					if (!empty($_POST['confirm'])) {
 						$this->_commentsController->commentFlag($_GET['id']);
-					}
-					$this->_commentsController->commentInfo($_GET['id']);
+						$this->_adminController->frontSuccess("Votre signalement a été pris en compte !");
+					} else {
+						$this->_commentsController->commentInfo($_GET['id']);
+					}					
 				//PAGE : CONNEXION
-				} elseif ($_GET['action'] === 'connexion') {					
-					$this->_adminController->connection();
+				} elseif ($_GET['action'] === 'connexion') {
+					if (isset($_SESSION['account']) && isset($_SESSION['password'])) {
+						$this->_adminController->frontSuccess("Vous êtes connecté au site !");
+					} else {
+						$this->_adminController->connection();
+					}					
 				//PAGE : TABLEAU DE BORD 
 				} elseif ($_GET['action'] === 'dashboard') {
 					if (isset($_SESSION['account']) && isset($_SESSION['password'])) {

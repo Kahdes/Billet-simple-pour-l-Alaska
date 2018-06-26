@@ -34,11 +34,11 @@
 	?>
 </section>
 
-<div class="col-xs-12" id="bill-list-btn">
+<section class="row" id="bill-list-btn">
 	<button class="btn btn-large btn-info" id="prev">&laquo; Précédent</button>
 	<span><span id="current-bill">1</span> / <?=$total;?></span>
 	<button class="btn btn-large btn-info" id="next">Suivant &raquo;</button>
-</div>
+</section>
 
 <?php $content = ob_get_clean(); ?>
 
