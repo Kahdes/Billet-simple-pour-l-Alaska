@@ -34,7 +34,7 @@
 
     <?php require_once('View/Frontend/footer.php'); ?> 
 
-    <script type="text/javascript" src="Public/js/navbar.js"></script>
+    <script type="text/javascript" src="Public/js/front_navbar.js"></script>
 
     <?php
         if (isset($_GET['action']) && $_GET['action'] === 'billList') {
