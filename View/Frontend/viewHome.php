@@ -25,6 +25,7 @@
 		<?php
 			foreach($bill as $b) {
 			$b['contenu'] = substr($b['contenu'], 0, 850);
+			$space = strrpos($b['contenu'], ' ');
 		?>
 				<h3 class="panel-heading">
 					<a class="custom-a" href="index.php?action=bill&amp;id=<?= $b['id'];?>">
@@ -33,7 +34,7 @@
 				</h3>
 
 				<div class="panel-body">
-					<?= $b['contenu'];?>... 
+					<?= substr($b['contenu'], 0, $space);?>... 
 					<a class="custom-a" href="index.php?action=bill&amp;id=<?= $b['id'];?>">Lire la suite</a>
 					<br/><br/>				
 					<em class="pull-right">Publié le : <?= $b['dateFR'];?></em>

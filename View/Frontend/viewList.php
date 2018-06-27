@@ -11,6 +11,7 @@
 		$total = 0;
 		foreach($bill as $b) {
 			$b['contenu'] = substr($b['contenu'], 0, 850);
+			$space = strrpos($b['contenu'], ' ');
 			$total += 1;
 	?>
 		<article class="col-xs-12 col-md-8 col-md-offset-2 panel billList-bill">
@@ -21,7 +22,7 @@
 			</h2>
 			<hr/>
 			<div class="panel-body">
-				<?= $b['contenu'];?>... 
+				<?= substr($b['contenu'], 0, $space);?>... 
 				<a class="custom-a" href="index.php?action=bill&amp;id=<?= $b['id'];?>">Lire la suite</a>
 				<br/><br/>
 				<em class="pull-right">

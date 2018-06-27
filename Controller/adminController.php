@@ -17,32 +17,24 @@ class adminController {
 		require_once('View/Frontend/viewConnection.php');
 	}
 
-	//SUCCES FRONTEND
-	public function frontSuccess($message) {
+	//SUCCES ACTION
+	public function success($message, $side = null) {
 		$msg = $message;
-		$_POST['success'] = 'success';
-		require_once('View/Frontend/viewSuccess.php');
+		if ($side) {
+			require_once('View/Frontend/viewSuccess.php');
+		} else {
+			require_once('View/Backend/viewSuccess.php');
+		}
 	}
 
-	//SUCCES FRONTEND
-	public function backSuccess($message) {
+	//ERREUR ACTION
+	public function error($message, $side = null) {
 		$msg = $message;
-		$_POST['success'] = 'success';
-		require_once('View/Backend/viewSuccess.php');
-	}
-
-	//ERREUR FRONTEND
-	public function frontError($message) {
-		$msg = $message;
-		$_POST['error'] = 'error';
-		require_once('View/Frontend/viewError.php');
-	}
-
-	//ERREUR BACKEND
-	public function backError($message) {
-		$msg = $message;
-		$_POST['error'] = 'error';
-		require_once('View/Backend/viewError.php');
+		if ($side) {
+			require_once('View/Frontend/viewError.php');
+		} else {
+			require_once('View/Backend/viewError.php');
+		}
 	}
 
 //TESTS
