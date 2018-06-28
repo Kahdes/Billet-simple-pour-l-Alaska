@@ -4,7 +4,7 @@ require_once('Model/Model.php');
 
 class Bill extends Model {
 
-//TESTS
+//TEST
 
 	//CHECK BILLET EXISTANT
 	public function checkBill($id) {
@@ -14,10 +14,10 @@ class Bill extends Model {
 			WHERE id = ?
 		';
 		$params = array($id);
-		return $this->sqlRequest($sql, $params);
+		return $this->check($this->sqlRequest($sql, $params));
 	}
 
-//GENERAL
+//GET BILLETS
 
 	//INFORMATIONS DE BILLET
 	public function getBill($id) {
@@ -32,20 +32,6 @@ class Bill extends Model {
 		$params = array($id);
 		return $this->sqlRequest($sql, $params);
 	}
-	
-	//DERNIER BILLET DU SITE
-	public function getLastBill() {
-		$sql = '
-			SELECT id,
-				   titre,
-				   contenu,
-				   DATE_FORMAT(date_creation, \'%d/%m/%Y à %H:%i:%s\') AS dateFR
-			FROM billets
-			ORDER BY id DESC
-			LIMIT 0,1
-		';
-		return $this->sqlRequest($sql);
-	}
 
 	//LISTE DE TOUS LES BILLETS
 	public function getBillList() {
@@ -59,8 +45,22 @@ class Bill extends Model {
 		';
 		return $this->sqlRequest($sql);
 	}
+	
+	//DERNIER BILLET DU SITE
+	public function getLastBill() {
+		$sql = '
+			SELECT id,
+				   titre,
+				   contenu,
+				   DATE_FORMAT(date_creation, \'%d/%m/%Y à %H:%i:%s\') AS dateFR
+			FROM billets
+			ORDER BY id DESC
+			LIMIT 0,1
+		';
+		return $this->sqlRequest($sql);
+	}	
 
-//ADMINISTRATEUR
+//ACTIONS
 
 	//AJOUTE UN BILLET
 	public function addBill($params) {
@@ -71,6 +71,18 @@ class Bill extends Model {
 		$params = array(
 			"titre" => $params['titre'],
 			"contenu" => $params['contenu']
+		);
+		return $this->sqlRequest($sql, $params);
+	}
+
+	//SUPPRIME UN BILLET
+	public function deleteBill($id) {
+		$sql = '
+			DELETE FROM billets
+			WHERE id = :id
+		';
+		$params = array(
+			"id" => $id
 		);
 		return $this->sqlRequest($sql, $params);
 	}		
@@ -91,17 +103,5 @@ class Bill extends Model {
 		);
 		return $this->sqlRequest($sql, $params);
 	}	
-
-	//SUPPRIME UN BILLET
-	public function deleteBill($id) {
-		$sql = '
-			DELETE FROM billets
-			WHERE id = :id
-		';
-		$params = array(
-			"id" => $id
-		);
-		return $this->sqlRequest($sql, $params);
-	}	
-
+	
 }

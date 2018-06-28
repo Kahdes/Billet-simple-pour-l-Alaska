@@ -17,15 +17,14 @@ class panelController {
 //PAGES
 
 	//TABLEAU DE BORD
-	public function dashboard($id = 0) {
+	public function dashboard($p_comm = 0) {
 		$bill = $this->_Bill->getBillList();
-		//$pages = $this->_Comments->getTotalFlaggedComments($id);
-		$comments = $this->_Comments->getFlaggedComments();
-		/*
-		while ($data = $pages->fetch()) {
+		//$pages_bill = $this->_Bill->getBillList();
+		$comments = $this->_Comments->getFlaggedComments($p_comm);
+		$pages_comm = $this->_Comments->getTotalFlaggedComments();
+		while ($data = $pages_comm->fetch()) {
 			$liPages = ceil(($data['total']) / 5);
 		}
-		*/
 		require_once('View/Backend/viewDashboard.php');
 	}
 

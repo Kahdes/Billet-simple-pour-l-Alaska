@@ -28,8 +28,8 @@ class billController {
 	}	
 
 	//BILLET & COMMENTAIRES
-	public function billInfo($id, $page) {
-		if ($this->billCheck($id)) {
+	public function billInfo($id, $page = 0) {
+		if ($this->_Bill->checkBill($id)) {
 			$bill = $this->_Bill->getBill($id);
 			$list = $this->_Bill->getBillList();			
 			$pages = $this->_Comments->getTotalComments($id);
@@ -46,14 +46,8 @@ class billController {
 
 //FONCTIONNALITES
 
-	//CHECK UN BILLET
 	public function billCheck($id) {
-		$test = $this->_Bill->checkBill($id);
-		if ($test->fetch()) {
-			return true;
-		} else {
-			return false;
-		}
+		return $this->_Bill->checkBill($id);
 	}
 
 	//AJOUTE UN BILLET

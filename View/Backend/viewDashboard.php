@@ -66,6 +66,34 @@
 			}
 		?>
 		</table>
+
+		<div class="col-xs-12 col-md-10 col-md-offset-1" id="comment-pagination">
+			<ul class="pagination">
+		<?php				
+			if (isset($_GET['page_comm'])) {
+				$page = (int) $_GET['page_comm'];
+			} else {
+				$page = 1;
+			}
+
+			for ($i = 0; $i < $liPages; $i++) {
+				if ($i + 1 === $page || ($page === 0 && $i === $page)) {
+		?>
+					<li>
+						<a id="comment-active" href="index.php?action=dashboard&page_comm=<?=$i+1;?>"><?=$i+1;?></a>
+					</li>
+		<?php
+				} else {
+		?>
+					<li>
+						<a href="index.php?action=dashboard&page_comm=<?=$i+1;?>"><?=$i+1;?></a>
+					</li>
+		<?php
+				}
+			}
+		?>
+				</ul>
+			</div>
 	</article>	
 </section>
 

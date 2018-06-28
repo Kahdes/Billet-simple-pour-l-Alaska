@@ -14,7 +14,7 @@ class commentsController {
 
 	//COMMENTAIRE SPECIFIQUE
 	public function commentInfo($id) {
-		if ($this->commentCheck($id)) {
+		if ($this->_Comments->checkComment($id)) {
 			$comment = $this->_Comments->getComment($id);
 			require_once('View/Frontend/viewFlagged.php');
 		} else {
@@ -25,14 +25,8 @@ class commentsController {
 
 //FONCTIONNALITES
 
-	//CHECK UN BILLET
 	public function commentCheck($id) {
-		$test = $this->_Comments->checkComment($id);
-		if ($test->fetch()) {
-			return true;
-		} else {
-			return false;
-		}
+		return $this->_Comments->checkComment($id);
 	}
 
 	//AJOUTE UN COMMENTAIRE

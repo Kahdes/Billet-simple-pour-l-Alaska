@@ -4,7 +4,7 @@ require_once('Model/Model.php');
 
 class Comments extends Model {
 
-//TESTS
+//TEST
 
 	//CHECK BILLET EXISTANT
 	public function checkComment($id) {
@@ -14,10 +14,10 @@ class Comments extends Model {
 			WHERE id = ?
 		';
 		$params = array($id);
-		return $this->sqlRequest($sql, $params);
+		return $this->check($this->sqlRequest($sql, $params));
 	}
 
-//GENERAL
+//GET COMMENTAIRES
 
 	//COMMENTAIRE SPECIFIQUE
 	public function getComment($id) {
@@ -48,9 +48,7 @@ class Comments extends Model {
 		';
 		$params = array($id);
 		return $this->sqlRequest($sql, $params);
-	}
-
-	
+	}	
 
 	//TOTAL DE COMMENTAIRES D'UN BILLET
 	public function getTotalComments($id) {
@@ -63,7 +61,48 @@ class Comments extends Model {
 			"id" => $id
 		);
 		return $this->sqlRequest($sql, $params);
-	}	
+	}		
+
+//GET FLAGS
+
+	//TOTAL DE FLAGS D'UN COMMENTAIRE
+	public function getFlags($id) {
+		$sql = '
+			SELECT flagged
+			FROM commentaires
+			WHERE id = ?
+		';
+		$params = array($id);
+		return $this->sqlRequest($sql, $params);
+	}
+
+	//TOTAL DE COMMENTAIRES FLAGGED
+	public function getTotalFlaggedComments() {
+		$sql = '
+			SELECT COUNT(*) AS total
+			FROM commentaires
+			WHERE flagged > 0
+		';
+		return $this->sqlRequest($sql);
+	}
+
+	//LISTE DES COMMENTAIRES FLAGGED
+	public function getFlaggedComments($page) {
+		$start = $page * 5;
+		$sql = '
+			SELECT id,
+				   contenu,
+				   pseudo,
+				   flagged
+			FROM commentaires
+			WHERE flagged > 0
+			ORDER BY flagged DESC
+			LIMIT ' . $start . ',5
+		';
+		return $this->sqlRequest($sql);
+	}		
+
+//ACTIONS
 
 	//AJOUTE UN COMMENTAIRE
 	public function addComment($params) {
@@ -80,60 +119,6 @@ class Comments extends Model {
 
 		return $this->sqlRequest($sql, $params);
 	}
-
-//FLAGS
-
-	//TOTAL DE FLAGS D'UN COMMENTAIRE
-	public function getFlags($id) {
-		$sql = '
-			SELECT flagged
-			FROM commentaires
-			WHERE id = ?
-		';
-		$params = array($id);
-		return $this->sqlRequest($sql, $params);
-	}
-
-	//AJOUT DE FLAG COMMENTAIRE
-	public function addFlag($id, $count) {
-		$sql = '
-			UPDATE commentaires
-			SET flagged = :count
-			WHERE id = :id
-		';
-		$params = array(
-			"id" => $id,
-			"count" => $count 
-		);
-		return $this->sqlRequest($sql, $params);
-	}	
-
-//ADMINISTRATEUR
-
-	//LISTE DES COMMENTAIRES FLAGGED
-	public function getFlaggedComments() {
-		$sql = '
-			SELECT id,
-				   contenu,
-				   pseudo,
-				   flagged
-			FROM commentaires
-			WHERE flagged > 0
-			ORDER BY flagged DESC
-		';
-		return $this->sqlRequest($sql);
-	}
-
-	/*
-	public function getTotalFlaggedComments($id) {
-		$sql = '
-			SELECT COUNT(*) AS total
-			FROM commentaires
-			WHERE flagged > 0
-		';
-		return $this->sqlRequest($sql, $params);
-	}
-	*/
 
 	//SUPPRIME UN COMMENTAIRES
 	public function deleteComment($id) {
@@ -158,6 +143,20 @@ class Comments extends Model {
 		);
 		return $this->sqlRequest($sql, $params);
 	}
+
+	//AJOUT DE FLAG COMMENTAIRE
+	public function addFlag($id, $count) {
+		$sql = '
+			UPDATE commentaires
+			SET flagged = :count
+			WHERE id = :id
+		';
+		$params = array(
+			"id" => $id,
+			"count" => $count 
+		);
+		return $this->sqlRequest($sql, $params);
+	}	
 
 	//RESET LES FLAGS D'UN COMMENTAIRE
 	public function resetFlagComment($id) {
