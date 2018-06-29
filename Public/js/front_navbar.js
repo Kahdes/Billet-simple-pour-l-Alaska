@@ -4,6 +4,7 @@ var Navbar = {
 	homeElt: null,
 	billListElt: null,
 	homeRegex: /index\.php$/,
+	billRegex: /\?action=bill(&id=(\d){1,}){1}(&page=(\d){1,}){0,1}$/,
 	billListRegex: /\?action=billList(&page=(\d){1,}){0,1}$/,
 
 	init() {
@@ -17,7 +18,7 @@ var Navbar = {
 			this.homeElt.setAttribute("class", "active");
 		} else if (this.billListRegex.test(this.url)) {
 			this.billListElt.setAttribute("class", "active");
-		} else {
+		} else if (!this.billRegex.test(this.url)) {
 			this.homeElt.setAttribute("class", "active");
 		}
 	}
