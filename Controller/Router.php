@@ -6,16 +6,16 @@ spl_autoload_register(function($class) {
 
 class Router {
 	
-	private $_billController;
 	private $_adminController;
-	private $_panelController;
+	private $_billController;
 	private $_commentsController;
+	private $_panelController;	
 
 	public function __construct() {
-		$this->_billController = new billController();
 		$this->_adminController = new adminController();
-		$this->_panelController = new panelController();
+		$this->_billController = new billController();
 		$this->_commentsController = new commentsController();
+		$this->_panelController = new panelController();		
 	}			
 
 	public function request() {
@@ -40,14 +40,22 @@ class Router {
 			//URL : ACTION INITIALE
 			if (isset($_GET['action'])) {
 				//PAGE : LISTE DES BILLETS
-				if ($_GET['action'] === 'billList') {					
-					$this->_billController->billList();
+				if ($_GET['action'] === 'billList') {
+					if (isset($_GET['page'])) {
+						$page = ((int) $_GET['page']) - 1;
+						if ($page < 0) {
+							$page = 0;
+						}
+					} else {
+						$page = 0;
+					}	
+					$this->_billController->billList($page);
 				//PAGE : BILLET SPECIFIQUE
-				} elseif ($_GET['action'] === 'bill' && isset($_GET['id'])) {					
+				} elseif ($_GET['action'] === 'bill' && isset($_GET['id'])) {
 					//SI UN COMMENTAIRE EST ENVOYE
 					if (!empty($_POST['pseudo']) && !empty($_POST['comment'])) {
 						$this->_commentsController->commentAdd($_GET['id'], $_POST['comment'], $_POST['pseudo']);
-						$this->_adminController->success("Votre commentaire a bien été envoyé !", true);
+						$this->_adminController->success("Votre commentaire a bien été envoyé !", 'Frontend');
 					} else {
 						//SI UNE PAGE EST SPECIFIEE					
 						if (isset($_GET['page'])) {
@@ -61,17 +69,19 @@ class Router {
 						$this->_billController->billInfo($_GET['id'], $page);
 					}					
 				//PAGE : SIGNALEMENT
-				} elseif ($_GET['action'] === 'flag' && isset($_GET['id'])) {
-					if (isset($_POST['flag-confirm'])) {
-						$this->_commentsController->commentFlag($_GET['id']);
-						$this->_adminController->success("Votre signalement a été pris en compte !", true);
-					} else {
-						$this->_commentsController->commentInfo($_GET['id']);
-					}					
+				} elseif ($_GET['action'] === 'flag') {
+					if (isset($_GET['id'])) {
+						if (isset($_POST['flag-confirm'])) {
+							$this->_commentsController->commentFlag($_GET['id']);
+							$this->_adminController->success("Votre signalement a été pris en compte !", 'Frontend');
+						} else {
+							$this->_commentsController->commentInfo($_GET['id']);
+						}
+					}										
 				//PAGE : CONNEXION
 				} elseif ($_GET['action'] === 'connexion') {
 					if (isset($_SESSION['account']) && isset($_SESSION['password'])) {
-						$this->_adminController->success("Vous êtes connecté au site !", true);
+						$this->_adminController->success("Vous êtes connecté au site !", 'Frontend');
 					} else {
 						$this->_adminController->connection();
 					}					
@@ -85,7 +95,7 @@ class Router {
 									if (!empty($_POST['create-title']) && !empty($_POST['create-body'])) {
 										if (isset($_POST['create-confirm'])) {
 											$this->_billController->billAdd($_POST['create-title'], $_POST['create-body']);
-											$this->_adminController->success("Le billet vient d'être créé !");
+											$this->_adminController->success("Le billet vient d'être créé !", 'Backend');
 										}
 									} else {
 										$this->_panelController->create();
@@ -96,15 +106,15 @@ class Router {
 										if ($this->_billController->billCheck($_GET['id'])) {
 											if (!empty($_POST['edit-title']) && !empty($_POST['edit-body'])) {
 												$this->_billController->billEdit($_GET['id'], $_POST['edit-title'], $_POST['edit-body']);
-												$this->_adminController->success("Le billet a été modifié !");
+												$this->_adminController->success("Le billet a été modifié !", 'Backend');
 											} else {
 												$this->_panelController->edit($_GET['id']);
 											}											
 										} else {
-											$this->_adminController->error("Ce billet n'existe pas.");
+											$this->_adminController->error("Ce billet n'existe pas.", 'Backend');
 										}
 									} else {
-										$this->_adminController->error("L'ID du billet n'est pas spécifié.");
+										$this->_adminController->error("L'ID du billet n'est pas spécifié.", 'Backend');
 									}
 								//SI ON SUPPRIME UN BILLET									
 								} elseif ($_GET['admin'] === 'delete') {
@@ -113,15 +123,15 @@ class Router {
 											if (isset($_POST['delete-bill-confirm'])) {
 												$this->_billController->billDelete($_GET['id']);
 												$this->_commentsController->commentListDelete($_GET['id']);
-												$this->_adminController->success("Ce billet et ses commentaires ont été supprimés !");
+												$this->_adminController->success("Ce billet et ses commentaires ont été supprimés !", 'Backend');
 											} else {
 												$this->_panelController->delete($_GET['id']);
 											}											
 										} else {
-											$this->_adminController->error("Ce billet et ses commentaires n'existent plus.");
+											$this->_adminController->error("Ce billet et ses commentaires n'existent plus.", 'Backend');
 										}																	
 									} else {
-										$this->_adminController->error("L'ID du billet n'est pas spécifié.");
+										$this->_adminController->error("L'ID du billet n'est pas spécifié.", 'Backend');
 									}
 								//PARTIE A AMELIORER
 								//SI ON RESET UN COMMENTAIRE							
@@ -130,15 +140,15 @@ class Router {
 										if ($this->_commentsController->commentCheck($_GET['id'])) {
 											if (isset($_POST['reset-comment-confirm'])) {
 												$this->_commentsController->commentFlagReset($_GET['id']);
-												$this->_adminController->success("Ce commentaire a été rétabli !");
+												$this->_adminController->success("Ce commentaire a été rétabli !", 'Backend');
 											} else {
-												$this->_panelController->commentReset($_GET['id']);
+												$this->_panelController->commentManage($_GET['id'], 'CommentReset');
 											}											
 										} else {
-											$this->_adminController->error("Ce commentaire n'existe plus.");
+											$this->_adminController->error("Ce commentaire n'existe plus.", 'Backend');
 										}																	
 									} else {
-										$this->_adminController->error("L'ID du commentaire n'est pas spécifié.");
+										$this->_adminController->error("L'ID du commentaire n'est pas spécifié.", 'Backend');
 									}
 								//PARTIE A AMELIORER
 								//SI ON SUPPRIMER UN COMMENTAIRE
@@ -147,15 +157,15 @@ class Router {
 										if ($this->_commentsController->commentCheck($_GET['id'])) {
 											if (isset($_POST['delete-comment-confirm'])) {
 												$this->_commentsController->commentDelete($_GET['id']);
-												$this->_adminController->success("Ce commentaire a été supprimé !");
+												$this->_adminController->success("Ce commentaire a été supprimé !", 'Backend');
 											} else {
-												$this->_panelController->commentDelete($_GET['id']);
+												$this->_panelController->commentManage($_GET['id'], 'CommentDelete');
 											}											
 										} else {
-											$this->_adminController->error("Ce commentaire n'existe plus.");
+											$this->_adminController->error("Ce commentaire n'existe plus.", 'Backend');
 										}																	
 									} else {
-										$this->_adminController->error("L'ID du commentaire n'est pas spécifié.");
+										$this->_adminController->error("L'ID du commentaire n'est pas spécifié.", 'Backend');
 									}
 								}
 							//PAGE : TABLEAU DE BORD PAR DEFAUT
@@ -172,15 +182,15 @@ class Router {
 							}
 						//PAGE : ACCES REFUSE
 						} else {
-							$this->_adminController->error("Votre compte ne possède pas les droits d'administration.", true);
+							$this->_adminController->error("Votre compte ne possède pas les droits d'administration.", 'Frontend');
 						}
 					//PAGE : ACCES REFUSE						
 					} else {
-						$this->_adminController->error("Vous n'avez pas les droits pour accéder à cette page.", true);
+						$this->_adminController->error("Vous n'avez pas les droits pour accéder à cette page.", 'Frontend');
 					}
 				//PAGE : ERREUR GENERALE
 				} else {
-					$this->_adminController->error("La page demandée n'existe pas.", true);
+					$this->_adminController->error("La page demandée n'existe pas.", 'Frontend');
 				}
 			//PAGE : ACCUEIL PAR DEFAUT
 			} else {

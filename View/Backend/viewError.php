@@ -1,7 +1,5 @@
-<?php $title = $msg; ?>
-<?php $description = ""; ?>
-
-<?php ob_start(); ?>
+<?php $this->title = $msg; ?>
+<?php $this->description = ""; ?>
 
 <section class="row" id="error">
 	<article class="alert alert-danger">
@@ -11,7 +9,3 @@
 		</p>
 	</article>
 </section>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require 'template.php'; ?>

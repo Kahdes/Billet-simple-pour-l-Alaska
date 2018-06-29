@@ -1,7 +1,5 @@
 <?php
 
-require_once('Model/Admin.php');
-
 class panelController {
 
 	private $_Bill;
@@ -18,48 +16,45 @@ class panelController {
 
 	//TABLEAU DE BORD
 	public function dashboard($p_comm = 0) {
-		$bill = $this->_Bill->getBillList();
-		//$pages_bill = $this->_Bill->getBillList();
-		$comments = $this->_Comments->getFlaggedComments($p_comm);
 		$pages_comm = $this->_Comments->getTotalFlaggedComments();
 		while ($data = $pages_comm->fetch()) {
 			$liPages = ceil(($data['total']) / 5);
 		}
-		require_once('View/Backend/viewDashboard.php');
+
+		$view = new View('Dashboard', 'Backend');
+		$view->generate(array(
+			'bill' => $this->_Bill->getBillList(),
+			'comments' => $this->_Comments->getFlaggedComments($p_comm),
+			'liPages' => $liPages
+		));
 	}
 
 	//CREATION DE BILLET
-	public function create($previsualize = null) {
-		if (isset($previsualize)) {
-			$bill = $this->_Bill->getLastBill();
-		} 
-		require_once('View/Backend/viewBillCreate.php');		
+	public function create() {
+		$view = new View('BillCreate', 'Backend');
+		$view->generate(array());	
 	}
 
 	//EDITION DE BILLET
-	public function edit($id) {
-		$bill = $this->_Bill->getBill($id);
-		require_once('View/Backend/viewBillEdit.php');
+	public function edit($id) {	
+		$view = new View('BillEdit', 'Backend');
+		$view->generate(array('bill' => $this->_Bill->getBill($id)));
 	}
 
 	//SUPPRESSION DE BILLET
 	public function delete($id) {
-		if (isset($_POST['delete-confirm'])) {
-			$deleted;
+		$view = new View('BillDelete', 'Backend');
+		$view->generate(array('bill' => $this->_Bill->getBill($id)));
+	}
+
+	//GESTION COMMENTAIRE
+	public function commentManage($id, $action) {
+		if ($action === 'CommentReset') {
+			$view = new View('CommentReset', 'Backend');
+			$view->generate(array('comment' => $this->_Comments->getComment($id)));
+		} elseif ($action === 'CommentDelete') {
+			$view = new View('CommentDelete', 'Backend');
+			$view->generate(array('comment' => $this->_Comments->getComment($id)));
 		}
-		$bill = $this->_Bill->getBill($id);
-		require_once('View/Backend/viewBillDelete.php');
-	}
-
-	//GESTION DES COMMENTAIRES
-	public function commentReset($id) {
-		$comment = $this->_Comments->getComment($id);
-		require_once('View/Backend/viewCommentReset.php');
-	}
-
-	//GESTION DES COMMENTAIRES
-	public function commentDelete($id) {
-		$comment = $this->_Comments->getComment($id);
-		require_once('View/Backend/viewCommentDelete.php');
 	}
 }

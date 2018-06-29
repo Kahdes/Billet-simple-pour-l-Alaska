@@ -33,6 +33,30 @@ class Bill extends Model {
 		return $this->sqlRequest($sql, $params);
 	}
 
+	//LISTE DE 5 BILLETS PAR PAGE
+	public function getBills($page) {
+		$start = $page * 5;
+		$sql = '
+			SELECT id,
+				   titre,
+				   contenu,				   
+				   DATE_FORMAT(date_creation, \'%d/%m/%Y à %H:%i:%s\') AS dateFR
+			FROM billets
+			ORDER BY id
+			LIMIT ' . $start . ',5
+		';
+		return $this->sqlRequest($sql);
+	}
+
+	//TOTAL DE COMMENTAIRES D'UN BILLET
+	public function getTotalBills() {
+		$sql = '
+			SELECT COUNT(*) AS total
+			FROM billets
+		';
+		return $this->sqlRequest($sql);
+	}	
+
 	//LISTE DE TOUS LES BILLETS
 	public function getBillList() {
 		$sql = '

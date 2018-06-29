@@ -1,9 +1,9 @@
 <footer class="container-fluid">
     <div class="col-xs-12" id="footer-info">
     	<p>
-    		<button class="btn btn-link"><a href="index.php?action=connexion">Connexion</a></button>
+    		<a href="index.php?action=connexion">Connexion</a>
     		/
-    		<button class="btn btn-link"><a href="index.php?action=dashboard">Gestion</a></button>
+    		<a href="index.php?action=dashboard">Gestion</a>
     	</p>
     	<p>Copyright © 
     		<a href="http://www.maximedosse.com">maximedosse.com</a> 2018 - Image : 

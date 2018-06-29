@@ -27,22 +27,14 @@
 <body>
     
     <?php require_once('View/Frontend/navbar.php'); ?>
-
     <div class="container main">
+        <?php require_once('View/Frontend/banner.php'); ?>
         <?= $content; ?>        
     </div>
 
     <?php require_once('View/Frontend/footer.php'); ?> 
 
     <script type="text/javascript" src="Public/js/front_navbar.js"></script>
-
-    <?php
-        if (isset($_GET['action']) && $_GET['action'] === 'billList') {
-    ?>
-            <script type="text/javascript" src="Public/js/billSlide.js"></script>
-    <?php
-        }
-    ?>
 
     <!--JQUERY-->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>

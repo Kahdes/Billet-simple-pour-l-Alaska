@@ -1,7 +1,5 @@
-<?php $title = "Tableau de bord : création de billet"; ?>
-<?php $description = ""; ?>
-
-<?php ob_start(); ?>
+<?php $this->title = "Tableau de bord : création de billet"; ?>
+<?php $this->description = ""; ?>
 
 <section class="row" id="dashboard-create">
 	<article class="col-xs-12">
@@ -31,7 +29,3 @@
 		</form>
 	</article>
 </section>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require 'template.php'; ?>

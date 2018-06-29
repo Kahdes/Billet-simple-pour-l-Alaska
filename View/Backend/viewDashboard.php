@@ -1,7 +1,5 @@
-<?php $title = "Tableau de bord"; ?>
-<?php $description = ""; ?>
-
-<?php ob_start(); ?>
+<?php $this->title = "Tableau de bord"; ?>
+<?php $this->description = ""; ?>
 
 <section class="row" id="dashboard-main">
 	<article class="col-xs-12">
@@ -96,7 +94,3 @@
 			</div>
 	</article>	
 </section>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require 'template.php'; ?>

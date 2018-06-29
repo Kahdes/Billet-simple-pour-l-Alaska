@@ -3,7 +3,8 @@ var Navbar = {
 	linkElts: null,
 	dashboardElt: null,
 	createElt: null,
-	dashboardRegex: /index\.php\?action=dashboard$/,
+	dashboardRegex: /index\.php\?action=dashboard/,
+	dashboardPageRegex: /(&page_comm=([\d]){1,}){1}/,
 	createRegex: /admin=create$/,
 
 	init() {
@@ -14,10 +15,14 @@ var Navbar = {
 
 	activeLink() {
 		if (this.dashboardRegex.test(this.url)) {
-			this.dashboardElt.setAttribute("class", "active");
-		} else if (this.createRegex.test(this.url)) {
-			this.createElt.setAttribute("class", "active");
-		}
+			if (this.dashboardPageRegex.test(this.url)) {
+				this.dashboardElt.setAttribute("class", "active");
+			} else if (this.createRegex.test(this.url)) {
+				this.createElt.setAttribute("class", "active");
+			} else {
+				this.dashboardElt.setAttribute("class", "active");
+			}			
+		} 
 	}
 };
 

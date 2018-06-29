@@ -1,8 +1,5 @@
 <?php
 
-require_once('Model/Bill.php');
-require_once('Model/Comments.php');
-
 class billController {
 	
 	private $_Bill;
@@ -17,30 +14,42 @@ class billController {
 
 	//ACCUEIL & DERNIER BILLET
 	public function billHome() {
-		$bill = $this->_Bill->getLastBill();
-		require_once('View/Frontend/viewHome.php');
+		$view = new View('Home', 'Frontend');
+		$view->generate(array('bill' => $this->_Bill->getLastBill()));
 	}
 	
 	//LISTE DES BILLETS
-	public function billList() {
-		$bill = $this->_Bill->getBillList();
-		require_once('View/Frontend/viewList.php');
+	public function billList($page = 0) {
+		$page_bill = $this->_Bill->getTotalBills();
+		while ($data = $page_bill->fetch()) {
+			$liPages = ceil(($data['total']) / 5);
+		}
+
+		$view = new View('List', 'Frontend');
+		$view->generate(array(
+			'bill' => $this->_Bill->getBills($page),
+			'liPages' => $liPages
+		));
 	}	
 
 	//BILLET & COMMENTAIRES
 	public function billInfo($id, $page = 0) {
-		if ($this->_Bill->checkBill($id)) {
-			$bill = $this->_Bill->getBill($id);
-			$list = $this->_Bill->getBillList();			
+		if ($this->_Bill->checkBill($id)) {		
 			$pages = $this->_Comments->getTotalComments($id);
-			$comments = $this->_Comments->getComments($id, $page);
 			while ($data = $pages->fetch()) {
 				$liPages = ceil(($data['total']) / 5);
 			}
-			require_once('View/Frontend/viewBill.php');
+			
+			$view = new View('Bill', 'Frontend');
+			$view->generate(array(
+				'bill' => $this->_Bill->getBill($id),
+				'list' => $this->_Bill->getBillList(),
+				'comments' => $this->_Comments->getComments($id, $page),
+				'liPages' => $liPages
+			));
 		} else {
-			$msg = "Le billet demandé n'existe pas.";
-			require_once('View/Frontend/viewError.php');
+			$view = new View('Error', 'Frontend');
+			$view->generate(array('msg' => "Le billet demandé n'existe pas."));
 		}		
 	}
 

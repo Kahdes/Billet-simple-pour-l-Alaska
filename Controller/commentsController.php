@@ -1,7 +1,5 @@
 <?php
 
-require_once('Model/Comments.php');
-
 class commentsController {
 	
 	private $_Comments;
@@ -15,11 +13,11 @@ class commentsController {
 	//COMMENTAIRE SPECIFIQUE
 	public function commentInfo($id) {
 		if ($this->_Comments->checkComment($id)) {
-			$comment = $this->_Comments->getComment($id);
-			require_once('View/Frontend/viewFlagged.php');
+			$view = new View('Flagged', 'Frontend');
+			$view->generate(array('comment' => $this->_Comments->getComment($id)));
 		} else {
-			$msg = "Le commentaire demandé n'existe pas.";
-			require_once('View/Frontend/viewError.php');
+			$view = new View('Error', 'Frontend');
+			$view->generate(array('msg' => "Le commentaire demandé n'existe pas."));
 		}		
 	}
 

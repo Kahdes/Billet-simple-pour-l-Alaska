@@ -1,14 +1,12 @@
-<?php $title = "Tableau de bord : rétablissement du commentaire"; ?>
-<?php $description = ""; ?>
-
-<?php ob_start(); ?>
+<?php $this->title = "Tableau de bord : rétablissement du commentaire"; ?>
+<?php $this->description = ""; ?>
 
 <section class="row" id="dashboard-manage">
 	<article class="col-xs-12">
 		<h1 class="page-header">Gérer les commentaires</h1>
 	</article>
 
-	<article class="col-xs-12" id="bill">
+	<article class="col-xs-12 bill">
 		<?php
 			foreach($comment as $c) {
 		?>
@@ -47,7 +45,3 @@
 		</form>
 	</article>
 </section>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require 'template.php'; ?>

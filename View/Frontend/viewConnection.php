@@ -1,9 +1,5 @@
-<?php $title = "Billet simple pour l'Alaska : Connexion"; ?>
-<?php $description = ""; ?>
-
-<?php ob_start(); ?>	
-
-<?php require_once('View/Frontend/banner.php');?>
+<?php $this->title = "Billet simple pour l'Alaska : Connexion"; ?>
+<?php $this->description = ""; ?>
 
 <section class="row" id="connexion-panel">
 	<article class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3" id="connexion-sign-in">
@@ -30,7 +26,3 @@
 		</form>
 	</article>
 </section>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require 'template.php'; ?>

@@ -1,9 +1,5 @@
-<?php $title = "Signaler un commentaire"; ?>
-<?php $description = ""; ?>
-
-<?php ob_start(); ?>
-
-<?php require_once('View/Frontend/banner.php');?>
+<?php $this->title = "Signaler un commentaire"; ?>
+<?php $this->description = ""; ?>
 
 <section class="row" id="flagged">
 	<article class="col-xs-12 col-md-10 col-md-offset-1">
@@ -45,8 +41,4 @@
 			<br/><br/>
 		</form>
 	</article>	
-</section>	
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require 'template.php'; ?>
+</section>

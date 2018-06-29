@@ -1,9 +1,5 @@
-<?php $title = $msg; ?>
-<?php $description = ""; ?>
-
-<?php ob_start(); ?>
-
-<?php require_once('View/Frontend/banner.php');?>
+<?php $this->title = $msg; ?>
+<?php $this->description = ""; ?>
 
 <section class="row" id="success">
 	<article class="alert alert-success">
@@ -13,7 +9,3 @@
 		</p>
 	</article>
 </section>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require 'template.php'; ?>

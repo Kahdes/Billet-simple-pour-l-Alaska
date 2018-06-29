@@ -2,32 +2,32 @@
 
 class Configuration {
 
-    private static $parametres;
+    private static $parameters;
 
     // Renvoie la valeur d'un paramètre de configuration
-    public static function get($nom, $valeurParDefaut = null) {
-        if (isset(self::getParametres()[$nom])) {
-            $valeur = self::getParametres()[$nom];
+    public static function get($name, $defaultValue = null) {
+        if (isset(self::getParameters()[$name])) {
+            $value = self::getParameters()[$name];
         }
         else {
-            $valeur = $valeurParDefaut;
+            $value = $defaultValue;
         }
-            return $valeur;
+            return $value;
     }
 
     // Renvoie le tableau des paramètres en le chargeant au besoin
-    private static function getParametres() {
-        if (self::$parametres == null) {
-            $cheminFichier = "Config/prod.ini";
-            if (!file_exists($cheminFichier)) {
-                $cheminFichier = "Config/dev.ini";
+    private static function getParameters() {
+        if (self::$parameters == null) {
+            $filePath = "Config/prod.ini";
+            if (!file_exists($filePath)) {
+                $filePath = "Config/dev.ini";
             }
-            if (!file_exists($cheminFichier)) {
+            if (!file_exists($filePath)) {
                 throw new Exception("Aucun fichier de configuration trouvé");
             } else {
-             self::$parametres = parse_ini_file($cheminFichier);
+             self::$parameters = parse_ini_file($filePath);
             }
         }
-        return self::$parametres;
+        return self::$parameters;
     }
 }

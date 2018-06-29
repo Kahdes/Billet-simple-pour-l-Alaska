@@ -1,9 +1,5 @@
-<?php $title = "Billet simple pour l'Alaska : Accueil"; ?>
-<?php $description = "Découvrez le dernier livre de Jean Forteroche : 'Billet somple pour l'Alaska'"; ?>
-
-<?php ob_start(); ?>
-
-<?php require_once('View/Frontend/banner.php');?>
+<?php $this->title = "Billet simple pour l'Alaska : Accueil"; ?>
+<?php $this->description = "Découvrez le dernier livre de Jean Forteroche : 'Billet somple pour l'Alaska'"; ?>
 
 <section class="row" id="home">
 	<article class="col-xs-12" id="home-author">
@@ -44,7 +40,3 @@
 		?>
 	</article>
 </section>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require 'template.php'; ?>

@@ -1,7 +1,5 @@
-<?php $title = "Tableau de bord : édition de billet"; ?>
-<?php $description = ""; ?>
-
-<?php ob_start(); ?>
+<?php $this->title = "Tableau de bord : édition de billet"; ?>
+<?php $this->description = ""; ?>
 
 <section class="row" id="dashboard-edit">
 	<article class="col-xs-12">
@@ -37,7 +35,3 @@
 		}
 	?>	
 </section>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require 'template.php'; ?>

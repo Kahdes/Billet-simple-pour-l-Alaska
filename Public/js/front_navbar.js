@@ -4,7 +4,7 @@ var Navbar = {
 	homeElt: null,
 	billListElt: null,
 	homeRegex: /index\.php$/,
-	billListRegex: /\?action=billList$/,
+	billListRegex: /\?action=billList(&page=(\d){1,}){0,1}$/,
 
 	init() {
 		this.linkElts = document.getElementsByClassName('navbar-link');
@@ -17,6 +17,8 @@ var Navbar = {
 			this.homeElt.setAttribute("class", "active");
 		} else if (this.billListRegex.test(this.url)) {
 			this.billListElt.setAttribute("class", "active");
+		} else {
+			this.homeElt.setAttribute("class", "active");
 		}
 	}
 };

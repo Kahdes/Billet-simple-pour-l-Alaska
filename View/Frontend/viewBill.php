@@ -1,11 +1,7 @@
-<?php $title = "Billet simple pour l'Alaske : billet"; ?>
-<?php $description = "Découvrez l'histoire du dernier livre de Jean Forteroche : 'Billet simple pour l'Alaska' au travers de ce billet"; ?>
+<?php $this->title = "Billet simple pour l'Alaske : billet"; ?>
+<?php $this->description = "Découvrez l'histoire du dernier livre de Jean Forteroche : 'Billet simple pour l'Alaska' au travers de ce billet"; ?>
 
-<?php ob_start(); ?>
-
-<?php require_once('View/Frontend/banner.php');?>
-
-<section class="row" id="bill">
+<section class="row bill">
 	<article class="col-xs-12">
 		<?php
 			foreach($bill as $b) {
@@ -59,7 +55,3 @@
 
 <?php require_once('View/Frontend/addComments.php'); ?>
 <?php require_once('View/Frontend/comments.php'); ?>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require 'template.php'; ?>

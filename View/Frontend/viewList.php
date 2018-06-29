@@ -1,25 +1,22 @@
-<?php $title = "Billet simple pour l'Alaska : Liste des billets"; ?>
-<?php $description = "Découvrez tous les billets du dernier livre de Jean Forteroche : 'Billet simple pour l'Alaska'"; ?>
-
-<?php ob_start(); ?>
-
-<?php require_once('View/Frontend/banner.php');?>
+<?php $this->title = "Billet simple pour l'Alaska : Liste des billets"; ?>
+<?php $this->description = "Découvrez tous les billets du dernier livre de Jean Forteroche : 'Billet simple pour l'Alaska'"; ?>
 
 <section class="row" id="bill-list">
-	<br />
+	<article class="col-xs-12 col-md-10 col-md-offset-1">
+		<h2 class="page-header">Liste des derniers billets :</h2>
+	</article>
+
 	<?php
-		$total = 0;
 		foreach($bill as $b) {
 			$b['contenu'] = substr($b['contenu'], 0, 850);
 			$space = strrpos($b['contenu'], ' ');
-			$total += 1;
 	?>
-		<article class="col-xs-12 col-md-8 col-md-offset-2 panel billList-bill">
-			<h2 class="panel-header">
+		<article class="col-xs-12 col-md-8 col-md-offset-2 panel">
+			<h3 class="panel-header">
 				<a class="custom-a" href="index.php?action=bill&amp;id=<?= $b['id'];?>">
 					<?= $b['titre'];?>
 				</a>
-			</h2>
+			</h3>
 			<hr/>
 			<div class="panel-body">
 				<?= substr($b['contenu'], 0, $space);?>... 
@@ -29,18 +26,36 @@
 				Publié le : <?= $b['dateFR'];?>
 				</em>
 			</div>			
-		</article>
+		</article>		
 	<?php
 		}
 	?>
+
+	<div class="col-xs-12 col-md-10 col-md-offset-1" id="bill-pagination">
+		<ul class="pagination">
+	<?php				
+		if (isset($_GET['page'])) {
+			$page = (int) $_GET['page'];
+		} else {
+			$page = 1;
+		}
+
+		for ($i = 0; $i < $liPages; $i++) {
+			if ($i + 1 === $page || ($page === 0 && $i === $page)) {
+	?>
+				<li>
+					<a id="bill-active" href="index.php?action=billList&page=<?=$i+1;?>"><?=$i+1;?></a>
+				</li>
+		<?php
+			} else {
+		?>
+				<li>
+					<a href="index.php?action=billList&page=<?=$i+1;?>"><?=$i+1;?></a>
+				</li>
+		<?php
+				}
+			}
+		?>
+		</ul>
+	</div>
 </section>
-
-<section class="row" id="bill-list-btn">
-	<button class="btn btn-large btn-info" id="prev">&laquo; Précédent</button>
-	<span><span id="current-bill">1</span> / <?=$total;?></span>
-	<button class="btn btn-large btn-info" id="next">Suivant &raquo;</button>
-</section>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require 'template.php'; ?>

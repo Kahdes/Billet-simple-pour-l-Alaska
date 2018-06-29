@@ -1,6 +1,9 @@
 <?php
 
+require_once('View/View.php');
 require_once('Model/Admin.php');
+require_once('Model/Bill.php');
+require_once('Model/Comments.php');
 
 class adminController {
 
@@ -14,27 +17,20 @@ class adminController {
 
 	//PANEL DE CONNECTION
 	public function connection() {
-		require_once('View/Frontend/viewConnection.php');
+		$view = new View('Connection', 'Frontend');
+		$view->generate(array(), 'Frontend');
 	}
 
-	//SUCCES ACTION
-	public function success($message, $side = null) {
-		$msg = $message;
-		if ($side) {
-			require_once('View/Frontend/viewSuccess.php');
-		} else {
-			require_once('View/Backend/viewSuccess.php');
-		}
+	//SUCCES
+	public function success($message, $side) {
+		$view = new View('Success', $side);
+		$view->generate(array('msg' => $message), $side);
 	}
 
-	//ERREUR ACTION
-	public function error($message, $side = null) {
-		$msg = $message;
-		if ($side) {
-			require_once('View/Frontend/viewError.php');
-		} else {
-			require_once('View/Backend/viewError.php');
-		}
+	//ERREUR
+	public function error($message, $side) {
+		$view = new View('Error', $side);
+		$view->generate(array('msg' => $message), $side);
 	}
 
 //TESTS
