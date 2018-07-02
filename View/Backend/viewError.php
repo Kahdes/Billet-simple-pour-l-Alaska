@@ -5,7 +5,7 @@
 	<article class="alert alert-danger">
 		<h1 class="panel-heading"><?= $msg;?></h1>
 		<p class="panel-body">
-			<a href="index.php?action=dashboard">Retour au tableau de bord -></a>
+			<a class="btn btn-default" href="index.php?action=dashboard">Retour au tableau de bord -></a>
 		</p>
 	</article>
 </section>
