@@ -28,34 +28,38 @@
 			}
 		?>
 
-			<div class="col-xs-12 col-md-10 col-md-offset-1" id="comment-pagination">
-				<ul class="pagination">
-		<?php
-				$id = (int) $_GET['id'];
-				
-				if (isset($_GET['page'])) {
-					$page = (int) $_GET['page'];
-				} else {
-					$page = 1;
-				}
-
-				for ($i = 0; $i < $liPages; $i++) {
-					if ($i + 1 === $page || ($page === 0 && $i === $page)) {
-		?>
-						<li>
-							<a id="comment-active" href="index.php?action=bill&id=<?=$id;?>&page=<?=$i+1;?>"><?=$i+1;?></a>
-						</li>
-		<?php
-					} else {
-		?>
-						<li>
-							<a href="index.php?action=bill&id=<?=$id;?>&page=<?=$i+1;?>"><?=$i+1;?></a>
-						</li>
-		<?php
-					}
-				}
-		?>
-				</ul>
-			</div>			
+						
 	</article>
+</section>
+
+<section class="row">
+	<div class="col-xs-12 col-md-10 col-md-offset-1" id="comment-pagination">
+		<ul class="pagination">
+<?php
+	$id = (int) $_GET['id'];
+				
+	if (isset($_GET['page'])) {
+		$page = (int) $_GET['page'];
+	} else {
+		$page = 1;
+	}
+
+	for ($i = 0; $i < $liPages; $i++) {
+		if ($i + 1 === $page || ($page === 0 && $i === $page)) {
+?>
+			<li>
+				<a id="comment-active" href="index.php?action=bill&id=<?=$id;?>&page=<?=$i+1;?>"><?=$i+1;?></a>
+			</li>
+<?php
+		} else {
+?>
+			<li>
+				<a href="index.php?action=bill&id=<?=$id;?>&page=<?=$i+1;?>"><?=$i+1;?></a>
+			</li>
+<?php
+		}
+	}
+?>
+		</ul>
+	</div>
 </section>

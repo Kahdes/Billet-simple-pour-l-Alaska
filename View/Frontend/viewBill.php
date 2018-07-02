@@ -19,8 +19,7 @@
 				<hr/>
 				
 				<div class="panel-body" id="bill-body">
-					<?= $b['contenu'];?> 
-					<br/><br/>
+					<?= $b['contenu'];?>
 				</div>
 				
 				<div id="bill-pagination">
