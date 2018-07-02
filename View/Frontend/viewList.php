@@ -8,8 +8,6 @@
 
 	<?php
 		foreach($bill as $b) {
-			$b['contenu'] = substr($b['contenu'], 0, 850);
-			$space = strrpos($b['contenu'], ' ');
 	?>
 		<article class="col-xs-12 col-md-8 col-md-offset-2 panel">
 			<h3 class="panel-header">
@@ -19,7 +17,7 @@
 			</h3>
 			<hr/>
 			<div class="panel-body">
-				<?= substr($b['contenu'], 0, $space);?>... 
+				<?= substr(strip_tags($b['contenu']), 0, 850) . '...';?>
 				<a class="custom-a" href="index.php?action=bill&amp;id=<?= $b['id'];?>">Lire la suite</a>
 				<br/><br/>
 				<em class="pull-right">
