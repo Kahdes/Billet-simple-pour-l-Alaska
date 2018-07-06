@@ -6,7 +6,7 @@
 		<h1 class="page-header">Tableau de bord</h1>
 	</article>
 
-	<article class="col-xs-12 col-md-6 table-responsive" id="dashboard-bills">
+	<article class="col-xs-12 col-md-6" id="dashboard-bills">
 		<table class="col-xs-12 table table-bordered table-striped table-condensed">
 			<caption><h2>Liste des billets :</h2></caption>
 			<tr>
@@ -23,7 +23,7 @@
 								<?= $b['titre'];?>
 							</a>
 						</h4>
-						<p class="pull-left"><em><?= $b['dateFR'];?></em></p>
+						<p class="pull-left"><em>Publié le : <?= $b['dateFR'];?></em></p>
 					</td>
 					<td>
 						<a class="btn btn-info btn-block" href="index.php?action=dashboard&amp;admin=edit&amp;id=<?=$b['id'];?>">Modifier</a>
@@ -36,7 +36,7 @@
 		</table>
 	</article>
 
-	<article class="col-xs-12 col-md-6 table-responsive" id="dashboard-comments">
+	<article class="col-xs-12 col-md-6" id="dashboard-comments">
 		<table class="col-xs-12 table table-bordered table-striped table-condensed">
 			<caption><h2>Commentaires signalés :</h2></caption>
 			<tr>

@@ -53,9 +53,15 @@ class Router {
 				//PAGE : BILLET SPECIFIQUE
 				} elseif ($_GET['action'] === 'bill' && isset($_GET['id'])) {
 					//SI UN COMMENTAIRE EST ENVOYE
-					if (!empty($_POST['pseudo']) && !empty($_POST['comment'])) {
-						$this->_commentsController->commentAdd($_GET['id'], $_POST['comment'], $_POST['pseudo']);
-						$this->_adminController->success("Votre commentaire a bien été envoyé !", 'Frontend');
+					if (isset($_POST['pseudo']) && isset($_POST['comment'])) {
+						$_POST['pseudo'] = trim($_POST['pseudo']);
+						$_POST['comment'] = trim($_POST['comment']);
+						if (!empty($_POST['pseudo']) && !empty($_POST['comment'])) {
+							$this->_commentsController->commentAdd($_GET['id'], $_POST['comment'], $_POST['pseudo']);
+							$this->_adminController->success("Votre commentaire a bien été envoyé !", 'Frontend');
+						} else {
+							$this->_adminController->error("Le commentaire est vide !", 'Frontend');
+						}
 					} else {
 						//SI UNE PAGE EST SPECIFIEE					
 						if (isset($_GET['page'])) {

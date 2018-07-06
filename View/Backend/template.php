@@ -34,6 +34,7 @@
         <?= $content; ?>        
     </div>
 
+    <!--NAVBAR-->
     <script type="text/javascript" src="Public/js/back_navbar.js" async defer></script>
 
     <!--JQUERY-->
