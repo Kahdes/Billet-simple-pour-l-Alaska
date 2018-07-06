@@ -29,7 +29,7 @@
 				<input type="checkbox" name="comment-confirm" id="comment-confirm" required /></label>		
 			</div>	
 
-			<input class="btn btn-info form-control" type="submit" />
+			<input class="btn btn-info form-control" id="submit" type="submit" />
 		</form>
 	</article>
 </section>

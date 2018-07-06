@@ -65,7 +65,7 @@ class Bill extends Model {
 				   contenu,
 				   DATE_FORMAT(date_creation, \'%d/%m/%Y à %H:%i:%s\') AS dateFR
 			FROM billets
-			ORDER BY id
+			ORDER BY dateFR
 		';
 		return $this->sqlRequest($sql);
 	}
@@ -117,7 +117,7 @@ class Bill extends Model {
 			UPDATE billets
 			SET titre         = :titre,
 			    contenu       = :contenu,
-			    date_creation = NOW()
+			    date_modification = NOW()
 			WHERE id = :id
 		';
 		$params = array(

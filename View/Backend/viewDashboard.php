@@ -26,8 +26,8 @@
 						<p class="pull-left"><em><?= $b['dateFR'];?></em></p>
 					</td>
 					<td>
-						<a class="btn btn-info btn-block" href="index.php?action=dashboard&admin=edit&id=<?=$b['id'];?>">Modifier</a>
-						<a class="btn btn-danger btn-block" href="index.php?action=dashboard&admin=delete&id=<?=$b['id'];?>">Supprimer</a>
+						<a class="btn btn-info btn-block" href="index.php?action=dashboard&amp;admin=edit&amp;id=<?=$b['id'];?>">Modifier</a>
+						<a class="btn btn-danger btn-block" href="index.php?action=dashboard&amp;admin=delete&amp;id=<?=$b['id'];?>">Supprimer</a>
 					</td>					
 				</tr>
 		<?php
@@ -56,8 +56,8 @@
 						<p>Signalé <strong><?= $c['flagged'];?></strong> fois</p>
 					</td>
 					<td>
-						<a class="btn btn-info btn-block" href="index.php?action=dashboard&admin=commentReset&id=<?=$c['id'];?>">Rétablir</a>
-						<a class="btn btn-danger btn-block" href="index.php?action=dashboard&admin=commentDelete&id=<?=$c['id'];?>">Supprimer</a>
+						<a class="btn btn-info btn-block" href="index.php?action=dashboard&amp;admin=commentReset&amp;id=<?=$c['id'];?>">Rétablir</a>
+						<a class="btn btn-danger btn-block" href="index.php?action=dashboard&amp;admin=commentDelete&amp;id=<?=$c['id'];?>">Supprimer</a>
 					</td>					
 				</tr>
 		<?php

@@ -7,7 +7,7 @@
 	</article>
 
 	<article class="col-xs-12">
-		<form action="index.php?action=dashboard&admin=create" method="post">
+		<form action="index.php?action=dashboard&amp;admin=create" method="post">
 			<div class="form-group">
 				<label for="create-title">Titre du billet : </label>
 				<input type="text" name="create-title" id="create-title" class="form-control input-lg" required />

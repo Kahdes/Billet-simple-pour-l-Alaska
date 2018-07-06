@@ -3,9 +3,9 @@ var Navbar = {
 	linkElts: null,
 	homeElt: null,
 	billListElt: null,
-	homeRegex: /index\.php$/,
-	billRegex: /\?action=bill(&id=(\d){1,}){1}(&page=(\d){1,}){0,1}$/,
-	billListRegex: /\?action=billList(&page=(\d){1,}){0,1}$/,
+	indexRegex: /index\.php/,
+	actionRegex: /\?action=/,
+	billListRegex: /billList(&page=(\d){1,}){0,1}$/,
 
 	init() {
 		this.linkElts = document.getElementsByClassName('navbar-link');
@@ -14,12 +14,18 @@ var Navbar = {
 	},
 
 	activeLink() {
-		if (this.homeRegex.test(this.url)) {
-			this.homeElt.setAttribute("class", "active");
-		} else if (this.billListRegex.test(this.url)) {
-			this.billListElt.setAttribute("class", "active");
-		} else if (!this.billRegex.test(this.url)) {
-			this.homeElt.setAttribute("class", "active");
+		if (this.indexRegex.test(this.url)) {
+			if (this.actionRegex.test(this.url)) {
+				if (this.billListRegex.test(this.url)) {
+					this.billListElt.setAttribute("class", "active");
+				}
+			} else {
+				this.homeElt.setAttribute("class", "active");
+			}
+		} else {
+			if (!this.actionRegex.test(this.url)) {
+				this.homeElt.setAttribute("class", "active");
+			}
 		}
 	}
 };

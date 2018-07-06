@@ -43,7 +43,7 @@ class Comments extends Model {
 				   DATE_FORMAT(date_creation, \'%d/%m/%Y à %H:%i:%s\') AS dateFR
 			FROM commentaires
 			WHERE id_billet = ?
-			ORDER BY dateFR DESC
+			ORDER BY id DESC
 			LIMIT ' . $start . ',5
 		';
 		$params = array($id);

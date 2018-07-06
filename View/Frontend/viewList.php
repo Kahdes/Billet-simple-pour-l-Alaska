@@ -42,13 +42,13 @@
 			if ($i + 1 === $page || ($page === 0 && $i === $page)) {
 	?>
 				<li>
-					<a id="bill-active" href="index.php?action=billList&page=<?=$i+1;?>"><?=$i+1;?></a>
+					<a id="bill-active" href="index.php?action=billList&amp;page=<?=$i+1;?>"><?=$i+1;?></a>
 				</li>
 		<?php
 			} else {
 		?>
 				<li>
-					<a href="index.php?action=billList&page=<?=$i+1;?>"><?=$i+1;?></a>
+					<a href="index.php?action=billList&amp;page=<?=$i+1;?>"><?=$i+1;?></a>
 				</li>
 		<?php
 				}

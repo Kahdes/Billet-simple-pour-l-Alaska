@@ -33,7 +33,7 @@
 
 	<article class="col-xs-12">
 		<br/>
-		<form action="index.php?action=dashboard&admin=commentDelete&id=<?=$_GET['id'];?>" method="post">
+		<form action="index.php?action=dashboard&amp;admin=commentDelete&amp;id=<?=$_GET['id'];?>" method="post">
 			<div class="form-group">
 				<label for="delete-comment-confirm">Confirmer la suppression du commentaire : </label>
 				<input type="checkbox" name="delete-comment-confirm" id="delete-comment-confirm" required />

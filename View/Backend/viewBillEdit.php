@@ -10,7 +10,7 @@
 		foreach($bill as $b) {
 	?>
 	<article class="col-xs-12">
-		<form action="index.php?action=dashboard&admin=edit&id=<?=$_GET['id']?>" method="post">
+		<form action="index.php?action=dashboard&amp;admin=edit&amp;id=<?=$_GET['id']?>" method="post">
 			<div class="form-group">
 				<label for="edit-title">Titre du billet : </label>
 				<input type="text" name="edit-title" id="edit-title" value="<?=$b['titre'];?>" class="form-control input-lg" required />

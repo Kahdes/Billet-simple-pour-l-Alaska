@@ -34,7 +34,7 @@
 
 	<article class="col-xs-12">
 		<br/>
-		<form action="index.php?action=dashboard&admin=delete&id=<?=$_GET['id']?>" method="post">
+		<form action="index.php?action=dashboard&amp;admin=delete&amp;id=<?=$_GET['id']?>" method="post">
 			<div class="form-group">
 				<label for="delete-bill-confirm">Confirmer la suppression du billet et de ses commentaires : </label>
 				<input type="checkbox" name="delete-bill-confirm" id="delete-bill-confirm" required />

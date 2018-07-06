@@ -33,7 +33,7 @@
 
 	<article class="col-xs-12">
 		<br/>
-		<form action="index.php?action=dashboard&admin=commentReset&id=<?=$_GET['id'];?>" method="post">
+		<form action="index.php?action=dashboard&amp;admin=commentReset&amp;id=<?=$_GET['id'];?>" method="post">
 			<div class="form-group">
 				<label for="reset-comment-confirm">Confirmer le rétablissement du commentaire : </label>
 				<input type="checkbox" name="reset-comment-confirm" id="reset-comment-confirm" required />

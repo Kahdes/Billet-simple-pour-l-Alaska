@@ -9,7 +9,7 @@
 				<div class="panel">
 					<h3 class="panel-heading" id="comment-title">
 						<?= htmlspecialchars($c['pseudo']);?>
-						<a href="index.php?action=flag&id=<?=htmlspecialchars($c['id']);?>">
+						<a href="index.php?action=flag&amp;id=<?=htmlspecialchars($c['id']);?>">
 							<span class="pull-right glyphicon glyphicon-flag show-pass flag" title="Signaler ce commentaire" id="flag-<?=$c['id'];?>"></span>
 						</a>
 					</h3>
@@ -26,9 +26,7 @@
 				</div>
 		<?php
 			}
-		?>
-
-						
+		?>						
 	</article>
 </section>
 
@@ -48,13 +46,13 @@
 		if ($i + 1 === $page || ($page === 0 && $i === $page)) {
 ?>
 			<li>
-				<a id="comment-active" href="index.php?action=bill&id=<?=$id;?>&page=<?=$i+1;?>"><?=$i+1;?></a>
+				<a id="comment-active" href="index.php?action=bill&amp;id=<?=$id;?>&amp;page=<?=$i+1;?>"><?=$i+1;?></a>
 			</li>
 <?php
 		} else {
 ?>
 			<li>
-				<a href="index.php?action=bill&id=<?=$id;?>&page=<?=$i+1;?>"><?=$i+1;?></a>
+				<a href="index.php?action=bill&amp;id=<?=$id;?>&amp;page=<?=$i+1;?>"><?=$i+1;?></a>
 			</li>
 <?php
 		}

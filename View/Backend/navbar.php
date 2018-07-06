@@ -16,7 +16,7 @@
                     <a href="index.php?action=dashboard"><span class="glyphicon glyphicon-inbox"></span> Tableau de bord</a>
                 </li>         
                 <li class="navbar-link" id="create">
-                    <a href="index.php?action=dashboard&admin=create"><span class="glyphicon glyphicon-book"></span> Créer un billet</a>
+                    <a href="index.php?action=dashboard&amp;admin=create"><span class="glyphicon glyphicon-book"></span> Créer un billet</a>
                 </li>
                 <li class="navbar-link" id="dashboard-home">
                     <a href="index.php"><span class="glyphicon glyphicon-home"></span> Site</a>
